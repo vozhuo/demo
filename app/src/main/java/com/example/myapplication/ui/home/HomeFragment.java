@@ -17,6 +17,7 @@ import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.AMapOptions;
+import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.MapView;
 import com.amap.api.maps.UiSettings;
 import com.amap.api.maps.model.CameraPosition;
@@ -31,8 +32,7 @@ public class HomeFragment extends Fragment {
     private MapView mMapView = null;
     private HomeViewModel homeViewModel;
 
-
-    public static final LatLng SHANGHAI = new LatLng(31.238068, 121.501654);// 上海市经纬度
+    private static final LatLng NANNING = new LatLng(22.824868, 108.372709); // 南宁市经纬度
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -46,14 +46,9 @@ public class HomeFragment extends Fragment {
         mMapView.onCreate(savedInstanceState);
         //定义了一个地图view
         AMap aMap = mMapView.getMap();
-
-
-        CameraPosition LUJIAZUI = new CameraPosition.Builder()
-                .target(SHANGHAI).zoom(18).bearing(0).tilt(30).build();
-
-        AMapOptions aOptions = new AMapOptions();
-        aOptions.tiltGesturesEnabled(false);// 禁止通过手势倾斜地图
-        aOptions.camera(LUJIAZUI);
+        //添加点标记
+        aMap.addMarker(new MarkerOptions().position(NANNING).title("水电站"));
+        aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(NANNING, 5));
 
         return root;
     }
@@ -71,7 +66,7 @@ public class HomeFragment extends Fragment {
         mMapView.onPause();
     }
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         //在activity执行onSaveInstanceState时执行mMapView.onSaveInstanceState (outState)，保存地图当前的状态
         mMapView.onSaveInstanceState(outState);

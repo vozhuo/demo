@@ -13,23 +13,32 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.myapplication.R;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class NotificationsFragment extends Fragment {
 
-    private NotificationsViewModel notificationsViewModel;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        notificationsViewModel =
-                ViewModelProviders.of(this).get(NotificationsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_notifications, container, false);
-        final TextView textView = root.findViewById(R.id.text_notifications);
-        notificationsViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+
+        LineChart mLineChart = root.findViewById(R.id.lineChart);
+        List<Entry> entryList = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            entryList.add(new Entry(i, (float) (Math.random()) * 25));
+        }
+        //一条线
+        LineDataSet lineDataSet = new LineDataSet(entryList, "气温");
+        mLineChart.setData(new LineData(lineDataSet));
+
+
         return root;
     }
 }
