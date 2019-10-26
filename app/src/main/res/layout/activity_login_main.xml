@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <ImageView
+        android:id="@+id/activity_login_main_iv"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/icon_login_background"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp"
+        android:paddingStart="20dp"
+        android:paddingRight="20dp"
+        android:paddingEnd="20dp">
+        <ImageView
+            android:id="@+id/activity_login_main_username_icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:src="@drawable/icon_user_account_48px"/>
+        <EditText
+            android:id="@+id/activity_login_main_username_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:hint="@string/activity_login_main_username_hint"
+            android:textSize="20sp"
+            android:maxLines="1"
+            android:inputType="textPersonName"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp"
+        android:paddingStart="20dp"
+        android:paddingRight="20dp"
+        android:paddingEnd="20dp">
+        <ImageView
+            android:id="@+id/activity_login_main_password_icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:src="@drawable/icon_password_48px"/>
+        <EditText
+            android:id="@+id/activity_login_main_password_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:hint="@string/activity_login_main_password_hint"
+            android:textSize="20sp"
+            android:maxLines="1"
+            android:inputType="textPassword"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/activity_login_main_login_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/drawable_button_circle_blue_selector"
+        android:text="@string/activity_login_main_login_button_text"
+        android:textSize="20sp"
+        android:textColor="#FFFFFF"
+        android:letterSpacing="0.1"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
+
+        <Button
+            android:id="@+id/activity_login_main_findpsw_btn"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="50dp"
+            android:background="@drawable/drawable_button_circle_blue_selector"
+            android:text="@string/activity_login_main_findpassword_button_text"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"
+            android:letterSpacing="0.1"/>
+        <Button
+            android:id="@+id/activity_login_main_register_btn"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/drawable_button_circle_blue_selector"
+            android:text="@string/activity_login_main_register_button_text"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"
+            android:letterSpacing="0.1"/>
+    </LinearLayout>
+
+
+</LinearLayout>
