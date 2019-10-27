@@ -11,6 +11,7 @@ import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.entity.LoginInfo;
 import com.example.myapplication.viewmodel.LoginViewModel;
+import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +26,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Button mLoginButton;
     private Button mFindPswButton;
     private Button mRegisterButton;
+    private View mRootView;
 
     private LoginViewModel mViewModel;
 
@@ -37,6 +39,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void initViews(){
+        mRootView = findViewById(R.id.activity_login_main_root_container);
         mUsernameEt = findViewById(R.id.activity_login_main_username_et);
         mPasswordEt = findViewById(R.id.activity_login_main_password_et);
         mLoginButton = findViewById(R.id.activity_login_main_login_btn);
@@ -62,7 +65,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
 
             case R.id.activity_login_main_register_btn:{
-
+                Intent intent2 = new Intent(LoginActivity.this,RegisterActivity.class);
+                startActivity(intent2);
                 break;
             }
         }
@@ -82,8 +86,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     mLoginButton.setEnabled(true);
                 }else{
                     //login failure,show some error messages
-
-
+                    Toast.makeText(LoginActivity.this,"账号或者密码错误，请重试！",Toast.LENGTH_SHORT).show();
                     //enable login button
                     mLoginButton.setEnabled(true);
                 }
@@ -98,6 +101,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         if (username.equals("") || password.equals("")){
             Toast.makeText(LoginActivity.this,"账号或者密码不能为空，请重试",Toast.LENGTH_SHORT).show();
+//            Snackbar.make(mRootView,"账号或者密码不能为空，请重试",Snackbar.LENGTH_SHORT).show();
             mLoginButton.setEnabled(true);
             return;
         }

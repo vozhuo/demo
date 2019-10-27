@@ -47,4 +47,7 @@ dependencies {
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
     implementation 'com.github.codbking:PickTime:v1.0.1'
+
+    //EventBus 事件总线
+    implementation 'org.greenrobot:eventbus:3.1.1'
 }
