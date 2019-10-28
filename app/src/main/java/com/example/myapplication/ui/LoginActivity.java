@@ -54,7 +54,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.activity_login_main_login_btn:{
-                doLogin();
+                //----------Quick entrance to MainActivity---------
+                Intent test = new Intent(LoginActivity.this,MainActivity.class);
+                startActivity(test);
+                //doLogin();
+                //--------------------------------------------------
                 break;
             }
 
@@ -101,7 +105,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         if (username.equals("") || password.equals("")){
             Toast.makeText(LoginActivity.this,"账号或者密码不能为空，请重试",Toast.LENGTH_SHORT).show();
-//            Snackbar.make(mRootView,"账号或者密码不能为空，请重试",Snackbar.LENGTH_SHORT).show();
             mLoginButton.setEnabled(true);
             return;
         }
