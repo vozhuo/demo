@@ -30,14 +30,10 @@ import com.example.myapplication.R;
 
 public class HomeFragment extends Fragment {
     private MapView mMapView = null;
-    private HomeViewModel homeViewModel;
-
     private static final LatLng NANNING = new LatLng(22.824868, 108.372709); // 南宁市经纬度
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
         //获取地图控件引用
