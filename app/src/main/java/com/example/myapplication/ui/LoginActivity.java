@@ -9,9 +9,8 @@ import android.widget.Toast;
 
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
-import com.example.myapplication.entity.LoginInfo;
+import com.example.myapplication.entity.LoginResp;
 import com.example.myapplication.viewmodel.LoginViewModel;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -60,7 +59,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
 
             case R.id.activity_login_main_findpsw_btn:{
-
+                Intent intent1 = new Intent(LoginActivity.this,RetrievePasswordActivity.class);
+                startActivity(intent1);
                 break;
             }
 
@@ -74,10 +74,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private void subscribeUI(){
         mViewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
-        mViewModel.getLoginInfo().observe(this, new Observer<LoginInfo>() {
+        mViewModel.getLoginInfo().observe(this, new Observer<LoginResp>() {
             @Override
-            public void onChanged(LoginInfo loginInfo) {
-                if (loginInfo.isSucceed()){
+            public void onChanged(LoginResp loginResp) {
+                if (loginResp.isSucceed()){
                     //login successfully,go to the MainActivity
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);

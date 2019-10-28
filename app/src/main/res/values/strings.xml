@@ -32,4 +32,14 @@
     <string name="register_activity_password_unmatched">两次输入的密码不一致</string>
     <string name="register_activity_register_successfully">注册成功！正在跳转回登录页面…</string>
     <string name="register_activity_register_failure_username_exist">注册失败，用户名已存在！</string>
+
+    <!-- Retrieve Password页面字符串 -->
+    <string name="activity_retrieve_password_main_username_hint">用户名</string>
+    <string name="activity_retrieve_password_main_phone_or_email_hint">请输入手机号码/邮箱地址</string>
+    <string name="activity_retrieve_password_main_captcha_hint">请输入验证码</string>
+    <string name="activity_retrieve_password_main_password_hint">请输入新密码</string>
+    <string name="activity_retrieve_password_main_confirm_password_hint">请再次输入新密码</string>
+    <string name="activity_retrieve_password_main_confirm_button_text">确定</string>
+    <string name="retrieve_password_activity_retrieve_successfully">密码重置成功！正在跳转回登陆页面…</string>
+    <string name="retrieve_password_activity_retrieve_failure_username_not_exist">不存在该用户，请重试</string>
 </resources>

@@ -1,16 +1,16 @@
 package com.example.myapplication.event;
 
-import com.example.myapplication.entity.LoginInfo;
+import com.example.myapplication.entity.LoginResp;
 
 public class LoginEvent {
 
-    private LoginInfo loginInfo;
+    private LoginResp loginResp;
 
-    public LoginEvent(LoginInfo loginInfo){
-        this.loginInfo = loginInfo;
+    public LoginEvent(LoginResp loginResp){
+        this.loginResp = loginResp;
     }
 
-    public LoginInfo getLoginInfo() {
-        return loginInfo;
+    public LoginResp getLoginResp() {
+        return loginResp;
     }
 }

@@ -1,6 +1,6 @@
 package com.example.myapplication.viewmodel;
 
-import com.example.myapplication.entity.LoginInfo;
+import com.example.myapplication.entity.LoginResp;
 import com.example.myapplication.event.LoginEvent;
 import com.example.myapplication.model.UserModel;
 
@@ -14,14 +14,14 @@ import androidx.lifecycle.ViewModel;
 
 public class LoginViewModel extends ViewModel {
 
-    private final MutableLiveData<LoginInfo> mObservableLoginInfo;
+    private final MutableLiveData<LoginResp> mObservableLoginInfo;
 
     public LoginViewModel(){
         mObservableLoginInfo = new MutableLiveData<>();
         EventBus.getDefault().register(this);
     }
 
-    public LiveData<LoginInfo> getLoginInfo(){
+    public LiveData<LoginResp> getLoginInfo(){
         return mObservableLoginInfo;
     }
 
@@ -31,7 +31,7 @@ public class LoginViewModel extends ViewModel {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onLoginEvent(LoginEvent event){
-        mObservableLoginInfo.setValue(event.getLoginInfo());
+        mObservableLoginInfo.setValue(event.getLoginResp());
     }
 
     @Override

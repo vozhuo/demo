@@ -15,4 +15,9 @@ public class AppConst {
         public static final int REGISTER_FAILURE_CAPTCHA_UNMATCHED = 2;
         public static final int REGISTER_FAILURE_NO_RESPONSE = 3;
     }
+
+    public final static class RetrievePasswordStateType{
+        public static final int RETRIEVE_PASSWORD_FAILURE_USERNAME_DONT_EXISTED = 1;
+        public static final int RETRIEVE_PASSWORD_FAILURE_CAPTCHA_UNMATCHED = 2;
+    }
 }

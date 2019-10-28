@@ -1,6 +1,6 @@
 package com.example.myapplication.entity;
 
-public class LoginInfo {
+public class LoginResp {
 
     private boolean succeed;
     private int loginStateType;
