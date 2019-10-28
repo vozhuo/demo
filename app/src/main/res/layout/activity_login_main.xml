@@ -27,7 +27,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_gravity="center"
-            android:src="@drawable/icon_user_account_48px"/>
+            android:src="@mipmap/ic_user_48px"/>
         <EditText
             android:id="@+id/activity_login_main_username_et"
             android:layout_width="match_parent"
@@ -54,7 +54,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_gravity="center"
-            android:src="@drawable/icon_password_48px"/>
+            android:src="@mipmap/ic_password_48px"/>
         <EditText
             android:id="@+id/activity_login_main_password_et"
             android:layout_width="match_parent"

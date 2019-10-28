@@ -2,7 +2,10 @@ package com.example.myapplication.model;
 
 import com.example.myapplication.app.AppConst;
 import com.example.myapplication.entity.LoginInfo;
+import com.example.myapplication.entity.RegisterRequest;
+import com.example.myapplication.entity.RegisterResp;
 import com.example.myapplication.event.LoginEvent;
+import com.example.myapplication.event.RegisterEvent;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -15,6 +18,10 @@ public class UserModel {
 
     public static UserModel getInstance(){
         return UserModelHolder.sInstance;
+    }
+
+    private static class UserModelHolder{
+        private static final UserModel sInstance = new UserModel();
     }
 
     /**
@@ -38,7 +45,22 @@ public class UserModel {
         //------end of test code-----------
     }
 
-    private static class UserModelHolder{
-        private static final UserModel sInstance = new UserModel();
+    /**
+     * send a registerRequest to the server.
+     * @param registerRequest
+     */
+    public void register(RegisterRequest registerRequest){
+        //------start of test code---------
+        RegisterResp registerResp = new RegisterResp();
+        if (registerRequest.getUsername().equals("admin")){
+            registerResp.setSucceed(false);
+            registerResp.setRegisterStateType(AppConst.RegisterStateType.REGISTER_FAILURE_USERNAME_EXISTED);
+        }else{
+            registerResp.setSucceed(true);
+        }
+
+        EventBus.getDefault().post(new RegisterEvent(registerResp));
+        //------end of test code-----------
     }
+
 }

@@ -3,4 +3,8 @@
     <color name="colorPrimary">#2196F3</color>
     <color name="colorPrimaryDark">#1976D2</color>
     <color name="colorAccent">#03A9F4</color>
+    
+    <color name="activity_register_main_captcha_button_normal_color">#03A9F4</color>
+    <color name="activity_register_main_captcha_button_disable_color">#D6D6D6</color>
+
 </resources>
