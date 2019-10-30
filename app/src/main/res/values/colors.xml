@@ -7,4 +7,12 @@
     <color name="activity_register_main_captcha_button_normal_color">#03A9F4</color>
     <color name="activity_register_main_captcha_button_disable_color">#D6D6D6</color>
 
+    <!-- 子菜单选项卡背景颜色 -->
+    <color name="bottom_navigation_submenu_text_background_color">#FFFFFF</color>
+    <color name="bottom_navigation_submenu_text_background_pressed_color">#DDDDDD</color>
+    <color name="bottom_navigation_submenu_text_color">#000000</color>
+
+    <!-- 底部导航栏颜色 -->
+    <color name="bottom_navigation_menu_text_color">#03A9F4</color>
+    <color name="bottom_navigation_menu_unselected_text_color">#d8d8d8</color>
 </resources>

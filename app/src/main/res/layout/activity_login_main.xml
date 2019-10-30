@@ -112,5 +112,17 @@
             android:letterSpacing="0.1"/>
     </LinearLayout>
 
+    <Button
+        android:id="@+id/activity_login_main_test_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/drawable_button_circle_blue_selector"
+        android:text="测试"
+        android:textSize="20sp"
+        android:textColor="#FFFFFF"
+        android:letterSpacing="0.1"/>
 
 </LinearLayout>
