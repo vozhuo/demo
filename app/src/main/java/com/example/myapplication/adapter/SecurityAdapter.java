@@ -19,7 +19,25 @@ public class SecurityAdapter extends BaseQuickAdapter<SecurityEntity, BaseViewHo
     @Override
     protected void convert(@NonNull BaseViewHolder helper, SecurityEntity item) {
         helper.setText(R.id.bt_security_name, item.getName());
-//        if(item.getState() == 0)
-//
+        switch (item.getState()) {
+            case 0:
+                helper.setImageDrawable(R.id.iv_security_state,
+                        mContext.getResources().getDrawable(R.drawable.icon_shield_0));
+                break;
+            case 1:
+                helper.setImageDrawable(R.id.iv_security_state,
+                        mContext.getResources().getDrawable(R.drawable.icon_shield_1));
+                break;
+            case 2:
+                helper.setImageDrawable(R.id.iv_security_state,
+                        mContext.getResources().getDrawable(R.drawable.icon_shield_2));
+                break;
+            case 3:
+                helper.setImageDrawable(R.id.iv_security_state,
+                        mContext.getResources().getDrawable(R.drawable.icon_shield_3));
+                break;
+            default:
+                break;
+        }
     }
 }
