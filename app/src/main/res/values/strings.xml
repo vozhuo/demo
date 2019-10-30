@@ -42,4 +42,6 @@
     <string name="activity_retrieve_password_main_confirm_button_text">确定</string>
     <string name="retrieve_password_activity_retrieve_successfully">密码重置成功！正在跳转回登陆页面…</string>
     <string name="retrieve_password_activity_retrieve_failure_username_not_exist">不存在该用户，请重试</string>
+
+    <string name="logout">退出登录</string>
 </resources>

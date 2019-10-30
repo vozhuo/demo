@@ -27,17 +27,6 @@ public class DataFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_data, container, false);
-//        final TextView textView = root.findViewById(R.id.text_dashboard);
-//        dashboardViewModel.getText().observe(this, new Observer<String>() {
-//            @Override
-//            public void onChanged(@Nullable String s) {
-//                textView.setText(s);
-//            }
-//        });
-
-//        String info = DataProcess.getRow();
-//        TextView tv = root.findViewById(R.id.textView);
-//        tv.setText(info);
 
         HydAdapter mAdapter = new HydAdapter(dataList());
 
@@ -49,7 +38,6 @@ public class DataFragment extends Fragment {
 
     private List<HydEntity> dataList() {
         return new ArrayList<HydEntity>() {{
-            add(new HydEntity("项目", "预报值"));
             add(new HydEntity("最高气温", "20"));
             add(new HydEntity("最低气温", "10"));
             add(new HydEntity("平均气温", "25"));
