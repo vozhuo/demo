@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.data;
+package com.example.myapplication.ui;
 
 import com.alicloud.openservices.tablestore.SyncClient;
 import com.alicloud.openservices.tablestore.model.*;

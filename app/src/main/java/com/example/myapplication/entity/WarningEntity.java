@@ -3,26 +3,37 @@ package com.example.myapplication.entity;
 import java.util.Date;
 
 public class WarningEntity {
-    private Date date;
+    private String date;
     private String position;
     private String value;
 
-    public WarningEntity(Date date, String position, String value) {
+    public WarningEntity() {
+    }
+
+    public WarningEntity(String date, String position, String value) {
         this.date = date;
         this.position = position;
         this.value = value;
     }
 
-    public WarningEntity(Date date, String value) {
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    public WarningEntity(String date, String value) {
         this.date = date;
         this.value = value;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setData(Date date) {
+    public void setData(String date) {
         this.date = date;
     }
 

@@ -1,27 +1,28 @@
 package com.example.myapplication.entity;
 
+import java.util.List;
+
 public class SecurityEntity {
     private String name;
     private int state;
+    private List<WarningEntity> warningList;
 
-    public WarningEntity getWarningEntity() {
-        return warningEntity;
+    public List<WarningEntity> getWarningList() {
+        return warningList;
     }
 
-    public void setWarningEntity(WarningEntity warningEntity) {
-        this.warningEntity = warningEntity;
+    public void setWarningList(List<WarningEntity> warningList) {
+        this.warningList = warningList;
     }
-
-    private WarningEntity warningEntity;
 
     public SecurityEntity(String name, int state) {
         this.name = name;
         this.state = state;
     }
 
-    public SecurityEntity(String name, WarningEntity warningEntity) {
+    public SecurityEntity(String name, List<WarningEntity> warningList) {
         this.name = name;
-        this.warningEntity = warningEntity;
+        this.warningList = warningList;
     }
 
     public String getName() {

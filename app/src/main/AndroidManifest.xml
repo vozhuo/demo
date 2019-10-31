@@ -46,15 +46,24 @@
 <!--                <category android:name="android.intent.category.LAUNCHER" />-->
 <!--            </intent-filter>-->
         </activity>
-        <activity android:name=".ui.LoginActivity" android:theme="@style/ActivityNoActionBarTheme">
+        <activity
+            android:name=".ui.activity.LoginActivity"
+            android:theme="@style/ActivityNoActionBarTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.RegisterActivity" android:theme="@style/ActivityNoActionBarTheme"/>
-        <activity android:name=".ui.RetrievePasswordActivity" android:theme="@style/ActivityNoActionBarTheme" />
-        <activity android:name=".ui.AppMainActivity" android:theme="@style/ActivityNoActionBarTheme"/>
+
+
+        <activity android:name=".ui.activity.AppMainActivity" android:theme="@style/ActivityNoActionBarTheme"/>
+
+        <activity
+            android:name=".ui.activity.RegisterActivity"
+            android:theme="@style/ActivityNoActionBarTheme" />
+        <activity
+            android:name=".ui.activity.RetrievePasswordActivity"
+            android:theme="@style/ActivityNoActionBarTheme" />
     </application>
 
 </manifest>

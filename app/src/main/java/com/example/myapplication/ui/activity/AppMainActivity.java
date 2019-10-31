@@ -1,4 +1,4 @@
-package com.example.myapplication.ui;
+package com.example.myapplication.ui.activity;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,9 +8,12 @@ import android.widget.TextView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.AppFragmentPagerAdapter;
-import com.example.myapplication.ui.analysis.AnalysisFragment;
-import com.example.myapplication.ui.data.DataFragment;
-import com.example.myapplication.ui.home.HomeFragment;
+import com.example.myapplication.ui.fragment.AccountFragment;
+import com.example.myapplication.ui.fragment.AnalysisFragment;
+import com.example.myapplication.ui.fragment.DataFragment;
+import com.example.myapplication.ui.fragment.HomeFragment;
+import com.example.myapplication.ui.fragment.SecurityFragment;
+import com.example.myapplication.ui.fragment.WarningFragment;
 import com.example.myapplication.widget.BottomNavigationController;
 import com.google.android.material.tabs.TabLayout;
 

@@ -1,4 +1,4 @@
-package com.example.myapplication.ui;
+package com.example.myapplication.ui.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -48,4 +48,6 @@ public class SecurityFragment extends Fragment {
             add(new SecurityEntity("库区安全", 1));
         }};
     }
+
+
 }
