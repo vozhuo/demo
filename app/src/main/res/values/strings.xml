@@ -4,6 +4,11 @@
     <string name="title_data">数据</string>
     <string name="title_analysis">分析</string>
     <string name="title_account">帐号</string>
+    <string name="title_monitor">监测</string>
+    <string name="title_device">设备</string>
+    <string name="title_security">安全</string>
+    <string name="title_warning">预警</string>
+    <string name="title_predict">预测</string>
 
     <!-- Login页面字符串 -->
     <string name="activity_login_main_username_hint">用户名/手机/邮箱</string>

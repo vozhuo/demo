@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/drawable_icon_home_selector"
+        android:title="@string/title_home" />
+
+
+    <item
+        android:id="@+id/navigation_data"
+        android:icon="@drawable/drawable_icon_data_selector"
+        android:title="@string/title_data">
+
+        <menu>
+            <item
+                android:id="@+id/navigation_monitor"
+                android:icon="@drawable/ic_monitor_48px"
+                android:title="@string/title_monitor"/>
+            <item
+                android:id="@+id/navigation_device"
+                android:icon="@drawable/ic_device_48px"
+                android:title="@string/title_device"/>
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/navigation_analysis"
+        android:icon="@drawable/drawable_icon_analysis_selector"
+        android:title="@string/title_analysis">
+
+        <menu>
+            <item
+                android:id="@+id/navigation_security"
+                android:icon="@drawable/ic_security_48px"
+                android:title="@string/title_security"/>
+            <item
+                android:id="@+id/navigation_warn"
+                android:icon="@drawable/ic_warning_48px"
+                android:title="@string/title_warning"/>
+            <item
+                android:id="@+id/navigation_predict"
+                android:icon="@drawable/ic_predict_48px"
+                android:title="@string/title_predict"/>
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/navigation_account"
+        android:icon="@drawable/drawable_icon_account_selector"
+        android:title="@string/title_account" />
+
+</menu>

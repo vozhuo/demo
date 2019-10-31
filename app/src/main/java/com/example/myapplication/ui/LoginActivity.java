@@ -58,7 +58,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         switch (view.getId()){
             case R.id.activity_login_main_login_btn:{
                 //----------Quick entrance to MainActivity---------
-                Intent test = new Intent(LoginActivity.this,MainActivity.class);
+                Intent test = new Intent(LoginActivity.this,AppMainActivity.class);
                 startActivity(test);
                 //doLogin();
                 //--------------------------------------------------
@@ -78,7 +78,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
 
             case R.id.activity_login_main_test_btn:{
-                Intent intent3 = new Intent(LoginActivity.this,TestActivity.class);
+                Intent intent3 = new Intent(LoginActivity.this, AppMainActivity.class);
                 startActivity(intent3);
                 break;
             }
@@ -92,7 +92,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onChanged(LoginResp loginResp) {
                 if (loginResp.isSucceed()){
                     //login successfully,go to the MainActivity
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, AppMainActivity.class);
                     startActivity(intent);
 
                     //enable login button
