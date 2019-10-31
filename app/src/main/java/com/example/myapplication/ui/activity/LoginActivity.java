@@ -1,4 +1,4 @@
-package com.example.myapplication.ui;
+package com.example.myapplication.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.entity.LoginResp;
+import com.example.myapplication.ui.TestActivity;
 import com.example.myapplication.viewmodel.LoginViewModel;
 
 import androidx.annotation.Nullable;
@@ -78,7 +79,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
 
             case R.id.activity_login_main_test_btn:{
-                Intent intent3 = new Intent(LoginActivity.this,TestActivity.class);
+                Intent intent3 = new Intent(LoginActivity.this, TestActivity.class);
                 startActivity(intent3);
                 break;
             }
