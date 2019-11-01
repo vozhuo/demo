@@ -15,4 +15,8 @@
     <!-- 底部导航栏颜色 -->
     <color name="bottom_navigation_menu_text_color">#03A9F4</color>
     <color name="bottom_navigation_menu_unselected_text_color">#d8d8d8</color>
+
+    <!-- 视频监控页面相关颜色 -->
+    <color name="activity_video_surveillance_text_color">#1B1B1B</color>
+    <color name="activity_video_surveillance_title_color">#8CC6FF</color>
 </resources>

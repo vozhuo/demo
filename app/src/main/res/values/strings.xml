@@ -59,6 +59,8 @@
     <string name="fragment_data_uav_text">无人机</string>
     <string name="fragment_data_water_quality_text">水库水质</string>
 
+    <!-- 监测——视频监控Activity 相关字符串 -->
+    <string name="activity_video_surveillance_title_text">监测——视频监控</string>
 
     <string name="logout">退出登录</string>
 </resources>

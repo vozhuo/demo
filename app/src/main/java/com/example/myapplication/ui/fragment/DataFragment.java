@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.HydAdapter;
 import com.example.myapplication.entity.HydEntity;
+import com.example.myapplication.ui.activity.VideoSurveillanceActivity;
 import com.google.android.material.card.MaterialCardView;
 
 import java.util.ArrayList;
@@ -92,6 +94,8 @@ public class DataFragment extends Fragment implements View.OnClickListener {
             }
 
             case R.id.fragment_data_video_surveillance_cardview:{
+                Intent videoSurveillanceIntent = new Intent(getContext(), VideoSurveillanceActivity.class);
+                startActivity(videoSurveillanceIntent);
                 break;
             }
 
