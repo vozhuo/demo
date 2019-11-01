@@ -12,6 +12,7 @@ import com.example.myapplication.ui.fragment.AccountFragment;
 import com.example.myapplication.ui.fragment.AnalysisFragment;
 import com.example.myapplication.ui.fragment.DataFragment;
 import com.example.myapplication.ui.fragment.HomeFragment;
+import com.example.myapplication.ui.fragment.PredictFragment;
 import com.example.myapplication.ui.fragment.SecurityFragment;
 import com.example.myapplication.ui.fragment.WarningFragment;
 import com.example.myapplication.widget.BottomNavigationController;
@@ -38,7 +39,7 @@ public class AppMainActivity extends AppCompatActivity{
     private Fragment fragment3;               //设备模块
     private SecurityFragment mSecurityFragment;//安全模块
     private WarningFragment mWarningFragment;  //预警模块
-    private AnalysisFragment mAnalysisFragment;//预测模块
+    private PredictFragment mPredictFragment;//预测模块
     private AccountFragment mAccountFragment;  //账号模块
     private List<Fragment> mFragmentList;
 
@@ -62,7 +63,7 @@ public class AppMainActivity extends AppCompatActivity{
         fragment3 = new MyFragment("设备");
         mSecurityFragment = new SecurityFragment();
         mWarningFragment = new WarningFragment();
-        mAnalysisFragment = new AnalysisFragment();
+        mPredictFragment = new PredictFragment();
 
         mAccountFragment = new AccountFragment();
 
@@ -72,7 +73,7 @@ public class AppMainActivity extends AppCompatActivity{
         mFragmentList.add(fragment3);
         mFragmentList.add(mSecurityFragment);
         mFragmentList.add(mWarningFragment);
-        mFragmentList.add(mAnalysisFragment);
+        mFragmentList.add(mPredictFragment);
         mFragmentList.add(mAccountFragment);
 
         AppFragmentPagerAdapter adapter = new AppFragmentPagerAdapter(getSupportFragmentManager(),mFragmentList);
