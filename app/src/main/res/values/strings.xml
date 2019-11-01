@@ -48,5 +48,17 @@
     <string name="retrieve_password_activity_retrieve_successfully">密码重置成功！正在跳转回登陆页面…</string>
     <string name="retrieve_password_activity_retrieve_failure_username_not_exist">不存在该用户，请重试</string>
 
+    <!-- 数据监测页面相关字符串 -->
+    <string name="fragment_data_reservoir_level_text">水库水位</string>
+    <string name="fragment_data_dam_deformation_text">大坝变形</string>
+    <string name="fragment_data_hydro_meteorology_text">水文气象</string>
+    <string name="fragment_data_dam_stress_text">大坝应力</string>
+    <string name="fragment_data_dam_seepage_text">大坝渗流</string>
+    <string name="fragment_data_water_diversion_system_text">引水系统</string>
+    <string name="fragment_data_video_surveillance_text">视频监控</string>
+    <string name="fragment_data_uav_text">无人机</string>
+    <string name="fragment_data_water_quality_text">水库水质</string>
+
+
     <string name="logout">退出登录</string>
 </resources>
