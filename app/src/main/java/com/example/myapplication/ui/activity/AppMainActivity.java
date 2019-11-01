@@ -23,6 +23,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
@@ -30,6 +31,8 @@ public class AppMainActivity extends AppCompatActivity{
 
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
+    private Toolbar mToolbar;
+
     private HomeFragment mHomeFragment;       //地图模块
     private DataFragment mDataFragment;       //监测模块
     private Fragment fragment3;               //设备模块
@@ -48,8 +51,9 @@ public class AppMainActivity extends AppCompatActivity{
     }
 
     private void initViews(){
-        mTabLayout = findViewById(R.id.activity_test_main_tablayout);
-        mViewPager = findViewById(R.id.activity_test_main_viewpager);
+        mToolbar = findViewById(R.id.activity_main_toolbar);
+        mTabLayout = findViewById(R.id.activity_main_tablayout);
+        mViewPager = findViewById(R.id.activity_main_viewpager);
     }
 
     private void initFragments(){
@@ -74,7 +78,7 @@ public class AppMainActivity extends AppCompatActivity{
         AppFragmentPagerAdapter adapter = new AppFragmentPagerAdapter(getSupportFragmentManager(),mFragmentList);
         mViewPager.setAdapter(adapter);
 
-        BottomNavigationController.use(mTabLayout).associateWith(mViewPager);
+        BottomNavigationController.use(mTabLayout).toolbar(mToolbar).associateWith(mViewPager);
     }
 
     public static class MyFragment extends Fragment{

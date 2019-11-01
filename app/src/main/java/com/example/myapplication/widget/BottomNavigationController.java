@@ -20,9 +20,12 @@ import com.example.myapplication.R;
 import com.google.android.material.tabs.TabLayout;
 
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import androidx.appcompat.view.menu.MenuBuilder;
+import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
 /**
@@ -38,12 +41,14 @@ public class BottomNavigationController {
 
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
+    private Toolbar mToolbar;
     private ClickTraceRecorder mRecorder;
 
     private int mBottomMenuResId;
     private MenuItem[] mFirstMenu;                   //一级菜单
     private SparseArray<SubMenu> mSubMenuMap;       //K:一级菜单索引；V:二级菜单实例
     private SparseArray<PopupWindow> mSubMenuWindow;//K:一级菜单索引；V:二级菜单窗口
+    private List<String> mFragmentTitleList;        //各个fragment标题集合，用于toolbar标题的设置
     private boolean isPopupWindowShowing = false;
     private PopupWindow mShowingPopupWindow = null;
 
@@ -77,8 +82,14 @@ public class BottomNavigationController {
         return this;
     }
 
+    @Deprecated
     public BottomNavigationController firstSelectedItem(int index){
         this.mFirstSelectedTabIndex = index;
+        return this;
+    }
+
+    public BottomNavigationController toolbar(Toolbar toolbar){
+        this.mToolbar = toolbar;
         return this;
     }
 
@@ -118,6 +129,7 @@ public class BottomNavigationController {
         mViewPager.setCurrentItem(mFirstSelectedTabIndex);
         mTabLayout.getTabAt(mFirstSelectedTabIndex).select();
         applyMenuItemSelected(mTabLayout.getTabAt(mFirstSelectedTabIndex));
+        applyToolbarChanged(mFirstSelectedTabIndex);
 //        View view = mTabLayout.getTabAt(mFirstSelectedTabIndex).getCustomView();
 //        TextView tv = view.findViewById(R.id.tab_item_textview);
 //        tv.setTextColor(mTabLayout.getResources().getColor(R.color.bottom_navigation_menu_text_color));
@@ -149,12 +161,22 @@ public class BottomNavigationController {
         int totalValidItemCount = 0;
         mFirstMenu = new MenuItem[menu.size()];
         mSubMenuMap = new SparseArray<>();
+        mFragmentTitleList = new ArrayList<>();
         for (int i = 0;i < menu.size();i++){
             mFirstMenu[i] = menu.getItem(i);
             if (mFirstMenu[i].hasSubMenu()){
-                mSubMenuMap.append(i,mFirstMenu[i].getSubMenu());
-                totalValidItemCount += mFirstMenu[i].getSubMenu().size();
+                SubMenu subMenu = mFirstMenu[i].getSubMenu();
+                int subMenuSize = subMenu.size();
+                int subIndex = 0;
+                while (subIndex < subMenuSize){
+                    mFragmentTitleList.add(subMenu.getItem(subIndex).getTitle().toString());
+                    subIndex++;
+                }
+
+                mSubMenuMap.append(i,subMenu);
+                totalValidItemCount += subMenuSize;
             }else{
+                mFragmentTitleList.add(mFirstMenu[i].getTitle().toString());
                 totalValidItemCount++;
             }
         }
@@ -184,6 +206,7 @@ public class BottomNavigationController {
                 mRecorder.setClickEvent(ClickTraceRecorder.SUBMENU_ACTIVED_SELECTED);
                 mRecorder.setLastActivedTabIndex(firstMenuIndex);
                 mViewPager.setCurrentItem(finalI + menuOffset,false);
+                applyToolbarChanged(finalI + menuOffset);
                 popupWindow.dismiss();
             });
             rootView.addView(views[i]);
@@ -244,6 +267,12 @@ public class BottomNavigationController {
         iv.setSelected(false);
     }
 
+    private void applyToolbarChanged(int fragmentIndex){
+        if (mToolbar != null){
+            mToolbar.setTitle(mFragmentTitleList.get(fragmentIndex));
+        }
+    }
+
     private TabLayout.OnTabSelectedListener mOnTabSelectedListener = new TabLayout.OnTabSelectedListener() {
         @Override
         public void onTabSelected(TabLayout.Tab tab) {
@@ -270,6 +299,7 @@ public class BottomNavigationController {
                 mRecorder.setClickEvent(ClickTraceRecorder.SUBMENU_IDLE);
                 mRecorder.setLastActivedTabIndex(index);
                 mViewPager.setCurrentItem(offsetIndex,false);
+                applyToolbarChanged(offsetIndex);
                 //tv.setTextColor(mTabLayout.getResources().getColor(R.color.bottom_navigation_menu_text_color));
             }else {
                 showPopupWindow(mSubMenuWindow.get(index),tab.getCustomView());
