@@ -40,33 +40,6 @@ public class AnalysisFragment extends Fragment {
         LineDataSet lineDataSet = new LineDataSet(entryList, "气温");
         mLineChart.setData(new LineData(lineDataSet));
 
-        date_picker = root.findViewById(R.id.bt_date_picker);
-
-        String time = SimpleDateFormat.getDateInstance().format(new Date());
-        date_picker.setText(time);
-
-        final Calendar calendar = Calendar.getInstance();
-
-        date_picker.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(),
-                        new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                                calendar.set(Calendar.YEAR, year);
-                                calendar.set(Calendar.MONTH, month);
-                                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                                date_picker.setText(SimpleDateFormat.getDateInstance().format(calendar.getTime()));
-
-                            }
-                        }, calendar.get(Calendar.YEAR),
-                        calendar.get(Calendar.MONTH),
-                        calendar.get(Calendar.DAY_OF_MONTH));
-                datePickerDialog.show();
-            }
-        });
-
         return root;
     }
 }

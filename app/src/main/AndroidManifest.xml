@@ -66,6 +66,10 @@
             android:theme="@style/ActivityNoActionBarTheme" />
         <activity android:name=".ui.activity.VideoSurveillanceActivity"
             android:theme="@style/ActivityNoActionBarTheme"/>
+
+        <activity
+            android:name=".ui.activity.DamStressActivity"
+            android:theme="@style/ActivityNoActionBarTheme" />
     </application>
 
 </manifest>

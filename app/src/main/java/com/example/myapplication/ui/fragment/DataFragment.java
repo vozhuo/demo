@@ -18,6 +18,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.HydAdapter;
 import com.example.myapplication.entity.HydEntity;
+import com.example.myapplication.ui.activity.DamStressActivity;
 import com.example.myapplication.ui.activity.VideoSurveillanceActivity;
 import com.google.android.material.card.MaterialCardView;
 
@@ -82,6 +83,8 @@ public class DataFragment extends Fragment implements View.OnClickListener {
             }
 
             case R.id.fragment_data_dam_stress_cardview:{
+                Intent intent = new Intent(getContext(), DamStressActivity.class);
+                startActivity(intent);
                 break;
             }
 

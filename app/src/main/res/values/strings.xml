@@ -62,5 +62,7 @@
     <!-- 监测——视频监控Activity 相关字符串 -->
     <string name="activity_video_surveillance_title_text">监测——视频监控</string>
 
+    <string name="activity_dam_stress_title">监测-大坝应力</string>
     <string name="logout">退出登录</string>
+    <string name="dam_stress_text">最大应力： \n最小应力： \n拉应力：</string>
 </resources>
