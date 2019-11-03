@@ -18,6 +18,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.HydAdapter;
 import com.example.myapplication.entity.HydEntity;
+import com.example.myapplication.ui.activity.UAVPatrolActivity;
 import com.example.myapplication.ui.activity.VideoSurveillanceActivity;
 import com.google.android.material.card.MaterialCardView;
 
@@ -100,6 +101,8 @@ public class DataFragment extends Fragment implements View.OnClickListener {
             }
 
             case R.id.fragment_data_uav_cardview:{
+                Intent uavSurveillanceIntent = new Intent(getContext(), UAVPatrolActivity.class);
+                startActivity(uavSurveillanceIntent);
                 break;
             }
 

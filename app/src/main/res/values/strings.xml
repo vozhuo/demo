@@ -62,5 +62,8 @@
     <!-- 监测——视频监控Activity 相关字符串 -->
     <string name="activity_video_surveillance_title_text">监测——视频监控</string>
 
+    <!-- 监测——无人机巡查Activity相关字符串 -->
+    <string name="activity_uav_patrol_title_text">无人机巡查</string>
+
     <string name="logout">退出登录</string>
 </resources>
