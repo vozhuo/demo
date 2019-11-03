@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="12dp">
+
+    <ImageView
+        android:id="@+id/iv_calendar"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="5dp"
+        app:srcCompat="@drawable/icon_calendar" />
+
+    <Button
+        android:id="@+id/btn_calendar"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/drawable_button_sec"
+        android:textColor="@android:color/white" />
+
+    <ImageButton
+        android:id="@+id/ib_date_picker"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_gravity="center|end"
+        android:background="@drawable/icon_search" />
+</FrameLayout>

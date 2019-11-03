@@ -9,21 +9,15 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.myapplication.R;
-import com.example.myapplication.adapter.HydAdapter;
-import com.example.myapplication.entity.HydEntity;
 import com.example.myapplication.ui.activity.UAVPatrolActivity;
+import com.example.myapplication.ui.activity.DamStressActivity;
 import com.example.myapplication.ui.activity.VideoSurveillanceActivity;
 import com.google.android.material.card.MaterialCardView;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class DataFragment extends Fragment implements View.OnClickListener {
 
@@ -83,6 +77,8 @@ public class DataFragment extends Fragment implements View.OnClickListener {
             }
 
             case R.id.fragment_data_dam_stress_cardview:{
+                Intent intent = new Intent(getContext(), DamStressActivity.class);
+                startActivity(intent);
                 break;
             }
 

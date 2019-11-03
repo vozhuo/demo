@@ -65,5 +65,9 @@
     <!-- 监测——无人机巡查Activity相关字符串 -->
     <string name="activity_uav_patrol_title_text">无人机巡查</string>
 
+
+    <string name="activity_dam_stress_title">监测-大坝应力</string>
+
     <string name="logout">退出登录</string>
+    <string name="dam_stress_text">最大应力： \n最小应力： \n拉应力：</string>
 </resources>
