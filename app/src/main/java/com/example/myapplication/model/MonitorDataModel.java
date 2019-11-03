@@ -65,11 +65,11 @@ public class MonitorDataModel{
 
         //an hour ago
         calendar.add(Calendar.HOUR,-1);
-        UAVVideoItemEntity entity1 = new UAVVideoItemEntity(calendar.getTime(),"K12", R.mipmap.video_shortcut1,null);
+        UAVVideoItemEntity entity1 = new UAVVideoItemEntity(calendar.getTime(),"K12", R.mipmap.ic_uav_patrol1,null);
 
         //two hour ago
         calendar.add(Calendar.HOUR,-1);
-        UAVVideoItemEntity entity2 = new UAVVideoItemEntity(calendar.getTime(),"PB32",R.mipmap.video_shortcut2,null);
+        UAVVideoItemEntity entity2 = new UAVVideoItemEntity(calendar.getTime(),"PB32",R.mipmap.ic_uav_patrol2,null);
 
         List<UAVVideoItemEntity> list = new ArrayList<>();
         list.add(entity1);
@@ -81,7 +81,7 @@ public class MonitorDataModel{
     private List<UAVVideoItemEntity> generateYesterdayData(){
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DATE,-1);
-        UAVVideoItemEntity entity1 = new UAVVideoItemEntity(calendar.getTime(),"K12", R.mipmap.video_shortcut1,null);
+        UAVVideoItemEntity entity1 = new UAVVideoItemEntity(calendar.getTime(),"K12", R.mipmap.ic_uav_patrol1,null);
         List<UAVVideoItemEntity> list = new ArrayList<>();
         list.add(entity1);
         return list;
