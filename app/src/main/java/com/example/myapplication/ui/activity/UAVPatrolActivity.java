@@ -1,18 +1,21 @@
 package com.example.myapplication.ui.activity;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.DatePicker;
+import android.view.View;
 import android.widget.ImageView;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.UAVPatrolAdapter;
 import com.example.myapplication.entity.UAVVideoItemEntity;
 import com.example.myapplication.viewmodel.UAVPatrolViewModel;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,6 +35,9 @@ public class UAVPatrolActivity extends AppCompatActivity {
 
     private UAVPatrolViewModel mViewModel;
     private UAVPatrolAdapter mAdapter;
+
+    private SimpleDateFormat mFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    private String testUri = "http://vt1.doubanio.com/201904161504/37df49462f42733060e06dea8d38c3fe/view/movie/M/302440458.mp4";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -65,6 +71,20 @@ public class UAVPatrolActivity extends AppCompatActivity {
 
         mAdapter = new UAVPatrolAdapter(null);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.addOnItemTouchListener(new OnItemChildClickListener() {
+            @Override
+            public void onSimpleItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+//                Log.d(UAVPatrolActivity.TAG,"Item Click.Position is " + position);
+                Intent intent = new Intent(UAVPatrolActivity.this,VideoPlayerActivity.class);
+                UAVVideoItemEntity entity = (UAVVideoItemEntity) adapter.getData().get(position);
+                String uri = "android.resource://" + getPackageName() + "/" + entity.getVideoUrl();
+                String title = mFormatter.format(entity.getUploadDate()) + "    " + entity.getLocation();
+
+                intent.putExtra("VideoUri",testUri);
+                intent.putExtra("VideoTitle",title);
+                startActivity(intent);
+            }
+        });
         mRecyclerView.setAdapter(mAdapter);
     }
 

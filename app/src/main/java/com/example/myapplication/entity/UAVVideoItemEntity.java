@@ -7,9 +7,9 @@ public class UAVVideoItemEntity {
     private Date mUploadDate;
     private String mLocation;
     private int mVideoShortcut;
-    private String mVideoUrl;
+    private int mVideoUrl;
 
-    public UAVVideoItemEntity(Date uploadDate, String location, int videoShortcut, String videoUrl) {
+    public UAVVideoItemEntity(Date uploadDate, String location, int videoShortcut, int videoUrl) {
         this.mUploadDate = uploadDate;
         this.mLocation = location;
         this.mVideoShortcut = videoShortcut;
@@ -40,11 +40,11 @@ public class UAVVideoItemEntity {
         this.mVideoShortcut = videoShortcut;
     }
 
-    public String getVideoUrl() {
+    public int getVideoUrl() {
         return mVideoUrl;
     }
 
-    public void setVideoUrl(String videoUrl) {
+    public void setVideoUrl(int videoUrl) {
         this.mVideoUrl = videoUrl;
     }
 }

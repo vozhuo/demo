@@ -73,6 +73,9 @@
         <activity
             android:name=".ui.activity.DamStressActivity"
             android:theme="@style/ActivityNoActionBarTheme" />
+        <activity android:name=".ui.activity.VideoPlayerActivity"
+            android:theme="@style/ActivityNoActionBarTheme"
+            android:configChanges="orientation|screenSize|keyboardHidden"/>
     </application>
 
 </manifest>

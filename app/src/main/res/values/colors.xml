@@ -19,4 +19,10 @@
     <!-- 视频监控页面相关颜色 -->
     <color name="activity_video_surveillance_text_color">#1B1B1B</color>
     <color name="activity_video_surveillance_title_color">#8CC6FF</color>
+
+    <!-- 视频播放页面相关颜色 -->
+    <color name="video_player_controller_widget_background">#aa060606</color>
+    <color name="video_player_thumb_tint">#54da62</color>
+    <color name="vide_player_progress_background">#6c6c6c</color>
+    <color name="video_player_progress_secondary_color">#5f8462</color>
 </resources>
