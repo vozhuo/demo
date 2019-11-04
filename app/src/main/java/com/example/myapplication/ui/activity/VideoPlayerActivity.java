@@ -142,8 +142,8 @@ public class VideoPlayerActivity extends AppCompatActivity implements View.OnCli
             public void onClick(View v) {
                 if (isControllerBottomVisible){
                     isControllerBottomVisible = false;
-                    mControllerBottom.setVisibility(View.INVISIBLE);
-                    mControllerTop.setVisibility(View.INVISIBLE);
+                    mControllerBottom.setVisibility(View.GONE);
+                    mControllerTop.setVisibility(View.GONE);
                 }else{
                     isControllerBottomVisible = true;
                     mControllerBottom.setVisibility(View.VISIBLE);
