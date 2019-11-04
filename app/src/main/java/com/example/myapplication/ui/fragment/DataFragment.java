@@ -2,7 +2,6 @@ package com.example.myapplication.ui.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,12 +9,13 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.myapplication.R;
-import com.example.myapplication.ui.activity.UAVPatrolActivity;
+import com.example.myapplication.ui.activity.DamSeepageActivity;
 import com.example.myapplication.ui.activity.DamStressActivity;
+import com.example.myapplication.ui.activity.UAVPatrolActivity;
 import com.example.myapplication.ui.activity.VideoSurveillanceActivity;
+import com.example.myapplication.ui.activity.WaterDiversionActivity;
 import com.google.android.material.card.MaterialCardView;
 
 
@@ -31,6 +31,9 @@ public class DataFragment extends Fragment implements View.OnClickListener {
     private MaterialCardView mVideoSurveillanceCard;   //视频监控
     private MaterialCardView mUAVCard;              //无人机
     private MaterialCardView mWaterQualityCard;     //水库水质
+
+    public DataFragment() {
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -83,10 +86,14 @@ public class DataFragment extends Fragment implements View.OnClickListener {
             }
 
             case R.id.fragment_data_dam_seepage_cardview:{
+                Intent intent = new Intent(getContext(), DamSeepageActivity.class);
+                startActivity(intent);
                 break;
             }
 
             case R.id.fragment_data_water_diversion_system_cardview:{
+                Intent intent = new Intent(getContext(), WaterDiversionActivity.class);
+                startActivity(intent);
                 break;
             }
 

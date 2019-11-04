@@ -2,9 +2,7 @@ package com.example.myapplication.ui.activity;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.ImageButton;
 
 import androidx.annotation.Nullable;
@@ -50,7 +48,7 @@ public class DamStressActivity extends AppCompatActivity {
         date_picker.setText(time);
 
         final Calendar calendar = Calendar.getInstance();
-        
+
         ImageButton ib_date_picker = findViewById(R.id.ib_date_picker);
 
         date_picker.setOnClickListener(v -> {

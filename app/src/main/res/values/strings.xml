@@ -70,4 +70,6 @@
 
     <string name="logout">退出登录</string>
     <string name="dam_stress_text">最大应力： \n最小应力： \n拉应力：</string>
+    <string name="activity_dam_seepage_title">监测-大坝渗流</string>
+    <string name="activity_water_diversion_title">监测-引水系统</string>
 </resources>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="devices">
+        <item>监测点</item>
+        <item>a2</item>
+        <item>a3</item>
+    </string-array>
+</resources>

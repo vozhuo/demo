@@ -73,6 +73,18 @@
         <activity
             android:name=".ui.activity.DamStressActivity"
             android:theme="@style/ActivityNoActionBarTheme" />
+        <activity
+            android:name=".ui.activity.DamSeepageActivity"
+            android:theme="@style/ActivityNoActionBarTheme" />
+        <activity
+            android:name=".ui.activity.DamSeepageDetailActivity"
+            android:theme="@style/ActivityNoActionBarTheme" />
+        <activity
+            android:name=".ui.activity.WaterDiversionActivity"
+            android:theme="@style/ActivityNoActionBarTheme" />
+        <activity
+            android:name=".ui.activity.WaterDiversionGraphActivity"
+            android:theme="@style/ActivityNoActionBarTheme" />
         <activity android:name=".ui.activity.VideoPlayerActivity"
             android:theme="@style/ActivityNoActionBarTheme"
             android:configChanges="orientation|screenSize|keyboardHidden"/>
