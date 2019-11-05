@@ -1,8 +1,9 @@
 package com.example.myapplication.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class WaterDiversionEntity {
+public class WaterDiversionEntity implements Serializable {
     private String name;
     private List<BasicEntity> waterlist;
 

@@ -15,10 +15,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_water_graph"
+    <Button
+        android:id="@+id/btn_water_qgraph"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/item_water_diversion_graph" />
+        android:text="Button" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_water_quality"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/item_water_quality" />
 </LinearLayout>

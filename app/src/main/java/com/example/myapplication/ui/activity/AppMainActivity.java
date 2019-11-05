@@ -87,6 +87,9 @@ public class AppMainActivity extends AppCompatActivity{
 
         String name;
 
+        public MyFragment() {
+        }
+
         public MyFragment(String name) {
             this.name = name;
         }

@@ -19,6 +19,5 @@ class DamSeepageDetailActivity extends AppCompatActivity {
         mToolbar.setTitle(R.string.activity_dam_seepage_title);
         mToolbar.setNavigationIcon(R.mipmap.ic_arrow_back_white);
         mToolbar.setNavigationOnClickListener(v -> finish());
-
     }
 }

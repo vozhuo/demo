@@ -90,6 +90,9 @@
             android:configChanges="orientation|screenSize|keyboardHidden"/>
         <activity android:name=".ui.activity.DeviceStateActivity"
             android:theme="@style/ActivityNoActionBarTheme"/>
+        <activity
+            android:name=".ui.activity.WaterQualityActivity"
+            android:theme="@style/ActivityNoActionBarTheme" />
     </application>
 
 </manifest>

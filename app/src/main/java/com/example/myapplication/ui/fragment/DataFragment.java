@@ -16,6 +16,7 @@ import com.example.myapplication.ui.activity.DamStressActivity;
 import com.example.myapplication.ui.activity.UAVPatrolActivity;
 import com.example.myapplication.ui.activity.VideoSurveillanceActivity;
 import com.example.myapplication.ui.activity.WaterDiversionActivity;
+import com.example.myapplication.ui.activity.WaterQualityActivity;
 import com.google.android.material.card.MaterialCardView;
 
 
@@ -110,6 +111,8 @@ public class DataFragment extends Fragment implements View.OnClickListener {
             }
 
             case R.id.fragment_data_water_quality_cardview:{
+                Intent intent = new Intent(getContext(), WaterQualityActivity.class);
+                startActivity(intent);
                 break;
             }
         }
