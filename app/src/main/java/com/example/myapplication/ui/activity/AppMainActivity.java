@@ -11,6 +11,7 @@ import com.example.myapplication.adapter.AppFragmentPagerAdapter;
 import com.example.myapplication.ui.fragment.AccountFragment;
 import com.example.myapplication.ui.fragment.AnalysisFragment;
 import com.example.myapplication.ui.fragment.DataFragment;
+import com.example.myapplication.ui.fragment.DeviceFragment;
 import com.example.myapplication.ui.fragment.HomeFragment;
 import com.example.myapplication.ui.fragment.PredictFragment;
 import com.example.myapplication.ui.fragment.SecurityFragment;
@@ -36,7 +37,7 @@ public class AppMainActivity extends AppCompatActivity{
 
     private HomeFragment mHomeFragment;       //地图模块
     private DataFragment mDataFragment;       //监测模块
-    private Fragment fragment3;               //设备模块
+    private DeviceFragment mDeviceFragment;               //设备模块
     private SecurityFragment mSecurityFragment;//安全模块
     private WarningFragment mWarningFragment;  //预警模块
     private PredictFragment mPredictFragment;//预测模块
@@ -60,7 +61,7 @@ public class AppMainActivity extends AppCompatActivity{
     private void initFragments(){
         mHomeFragment = new HomeFragment();
         mDataFragment = new DataFragment();
-        fragment3 = new MyFragment("设备");
+        mDeviceFragment = new DeviceFragment();
         mSecurityFragment = new SecurityFragment();
         mWarningFragment = new WarningFragment();
         mPredictFragment = new PredictFragment();
@@ -70,7 +71,7 @@ public class AppMainActivity extends AppCompatActivity{
         mFragmentList = new ArrayList<>();
         mFragmentList.add(mHomeFragment);
         mFragmentList.add(mDataFragment);
-        mFragmentList.add(fragment3);
+        mFragmentList.add(mDeviceFragment);
         mFragmentList.add(mSecurityFragment);
         mFragmentList.add(mWarningFragment);
         mFragmentList.add(mPredictFragment);

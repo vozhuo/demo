@@ -44,12 +44,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         mLoginButton = findViewById(R.id.activity_login_main_login_btn);
         mFindPswButton = findViewById(R.id.activity_login_main_findpsw_btn);
         mRegisterButton = findViewById(R.id.activity_login_main_register_btn);
-        mTestButton = findViewById(R.id.activity_login_main_test_btn);
 
         mLoginButton.setOnClickListener(this);
         mFindPswButton.setOnClickListener(this);
         mRegisterButton.setOnClickListener(this);
-        mTestButton.setOnClickListener(this);
     }
 
     @Override
@@ -76,11 +74,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
             }
 
-            case R.id.activity_login_main_test_btn:{
-                Intent intent3 = new Intent(LoginActivity.this, AppMainActivity.class);
-                startActivity(intent3);
-                break;
-            }
         }
     }
 
