@@ -1,10 +1,12 @@
 package com.example.myapplication.entity;
 
-public class BasicEntity {
-    private String number;
-    private double value;
+import java.io.Serializable;
 
-    public BasicEntity(String number, double value) {
+public class BasicEntity implements Serializable {
+    private String number;
+    private String value;
+
+    public BasicEntity(String number, String value) {
         this.number = number;
         this.value = value;
     }
@@ -17,11 +19,11 @@ public class BasicEntity {
         this.number = number;
     }
 
-    public double getValue() {
+    public String getValue() {
         return value;
     }
 
-    public void setValue(double value) {
+    public void setValue(String value) {
         this.value = value;
     }
 }

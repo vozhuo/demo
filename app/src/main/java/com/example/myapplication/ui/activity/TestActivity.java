@@ -20,9 +20,4 @@ public class TestActivity extends BaseActivity {
     protected void initData() {
 
     }
-
-    @Override
-    protected String getContentTitle() {
-        return "测试页面";
-    }
 }
