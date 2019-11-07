@@ -18,6 +18,6 @@ public class WaterQualityAdapter extends BaseQuickAdapter<BasicEntity, BaseViewH
     @Override
     protected void convert(@NonNull BaseViewHolder helper, BasicEntity item) {
         helper.setText(R.id.tv_water_para, item.getNumber())
-                .setText(R.id.tv_water_qvalue, item.getValue() + "mg/L");
+                .setText(R.id.tv_water_qvalue, item.getValue());
     }
 }

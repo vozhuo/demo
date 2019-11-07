@@ -2,8 +2,8 @@ package com.example.myapplication.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,29 +19,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WaterQualityActivity extends AppCompatActivity {
-    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_water_quality);
-        mToolbar = findViewById(R.id.common_toolbar);
+        Toolbar mToolbar = findViewById(R.id.common_toolbar);
         mToolbar.setTitle(R.string.activity_water_quality_title);
         mToolbar.setNavigationIcon(R.mipmap.ic_arrow_back_white);
         mToolbar.setNavigationOnClickListener(v -> finish());
+        TextView tv_name = findViewById(R.id.tv_subheader_name);
+        tv_name.setText("水库水质");
+        TextView tv_left = findViewById(R.id.tv_para_left);
+        tv_left.setText("参数");
 
         WaterQualityAdapter mAdapter = new WaterQualityAdapter(dataList());
-
         RecyclerView mRecyclerView = findViewById(R.id.rv_water_quality);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mAdapter);
 
-        Button button = findViewById(R.id.btn_water_qgraph);
+        Button button = findViewById(R.id.btn_graph);
         button.setOnClickListener(v -> {
             Intent intent = new Intent(this, WaterDiversionGraphActivity.class);
-//            intent.putExtra("activity_title", R.string.activity_water_quality_title);
             Bundle bundle = new Bundle();
             bundle.putString("activity_title", getString(R.string.activity_water_quality_title));
+
+            ArrayList<String> list = new ArrayList<>();
+            for (BasicEntity d : dataList()) {
+                list.add(d.getNumber());
+            }
+            bundle.putStringArrayList("list", list);
             intent.putExtras(bundle);
             startActivity(intent);
         });

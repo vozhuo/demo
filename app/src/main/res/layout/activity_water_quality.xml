@@ -13,17 +13,23 @@
     <include
         layout="@layout/common_date_picker"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp" />
+
+    <include
+        layout="@layout/ll_subheader_bar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <Button
-        android:id="@+id/btn_water_qgraph"
+    <include
+        layout="@layout/common_para_value"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Button" />
+        android:layout_height="wrap_content" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_water_quality"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#802196F3"
         tools:listitem="@layout/item_water_quality" />
 </LinearLayout>
