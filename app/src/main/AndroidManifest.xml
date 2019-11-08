@@ -31,7 +31,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:usesCleartextTraffic="true"
         android:supportsRtl="true"
-        android:theme="@style/ActivityNoActionBarTheme">
+        android:theme="@style/ActivityNoActionBarTheme"
+        tools:ignore="GoogleAppIndexingWarning">
         <!--usesCleartextTraffic for Android P/Cleartext HTTP traffic to logs.amap.com not permitted-->
         <meta-data
             android:name="com.amap.api.v2.apikey"
@@ -39,54 +40,30 @@
         <service android:name="com.amap.api.location.APSService"/>
 
         <activity
-            android:name=".ui.activity.LoginActivity"
-            android:theme="@style/ActivityNoActionBarTheme">
+            android:name=".ui.activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-        <activity android:name=".ui.activity.AppMainActivity" android:theme="@style/ActivityNoActionBarTheme"/>
-
-        <activity
-            android:name=".ui.activity.RegisterActivity"
-            android:theme="@style/ActivityNoActionBarTheme" />
-        <activity
-            android:name=".ui.activity.RetrievePasswordActivity"
-            android:theme="@style/ActivityNoActionBarTheme" />
-        <activity android:name=".ui.activity.VideoSurveillanceActivity"
-            android:theme="@style/ActivityNoActionBarTheme"/>
-
-        <activity android:name=".ui.activity.UAVPatrolActivity"
-            android:theme="@style/ActivityNoActionBarTheme"/>
-
-        <activity
-            android:name=".ui.activity.DamStressActivity"
-            android:theme="@style/ActivityNoActionBarTheme" />
-        <activity
-            android:name=".ui.activity.DamSeepageActivity"
-            android:theme="@style/ActivityNoActionBarTheme" />
-        <activity
-            android:name=".ui.activity.DamSeepageDetailActivity"
-            android:theme="@style/ActivityNoActionBarTheme" />
-        <activity
-            android:name=".ui.activity.WaterDiversionActivity"
-            android:theme="@style/ActivityNoActionBarTheme" />
-        <activity
-            android:name=".ui.activity.WaterDiversionGraphActivity"
-            android:theme="@style/ActivityNoActionBarTheme" />
+        <activity android:name=".ui.activity.AppMainActivity"/>
+        <activity android:name=".ui.activity.RegisterActivity"/>
+        <activity android:name=".ui.activity.RetrievePasswordActivity"/>
+        <activity android:name=".ui.activity.VideoSurveillanceActivity"/>
+        <activity android:name=".ui.activity.UAVPatrolActivity"/>
+        <activity android:name=".ui.activity.DamStressActivity"/>
+        <activity android:name=".ui.activity.DamSeepageActivity"/>
+        <activity android:name=".ui.activity.DamSeepageDetailActivity"/>
+        <activity android:name=".ui.activity.WaterDiversionActivity"/>
+        <activity android:name=".ui.activity.WaterDiversionGraphActivity"/>
         <activity android:name=".ui.activity.VideoPlayerActivity"
-            android:theme="@style/ActivityNoActionBarTheme"
             android:configChanges="orientation|screenSize|keyboardHidden"/>
         <activity android:name=".ui.activity.TestActivity"
             android:label="测试页面01"/>
-        <activity android:name=".ui.activity.DeviceStateActivity"
-            android:theme="@style/ActivityNoActionBarTheme"/>
-        <activity
-            android:name=".ui.activity.WaterQualityActivity"
-            android:theme="@style/ActivityNoActionBarTheme" />
+        <activity android:name=".ui.activity.DeviceStateActivity"/>
+        <activity android:name=".ui.activity.WaterQualityActivity"/>
+        <activity android:name=".ui.activity.WaterWeatherActivity"
+            android:label="@string/activity_water_weather_title"/>
     </application>
 
 </manifest>

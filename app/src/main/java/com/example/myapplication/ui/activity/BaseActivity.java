@@ -1,10 +1,13 @@
 package com.example.myapplication.ui.activity;
 
 import android.content.pm.ActivityInfo;
-import android.content.res.Configuration;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.InflateException;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -13,8 +16,6 @@ import com.example.myapplication.R;
 import com.githang.statusbar.StatusBarCompat;
 
 import androidx.annotation.ColorRes;
-import androidx.annotation.IntDef;
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -25,7 +26,8 @@ import androidx.appcompat.widget.Toolbar;
  *
  *  实现了以下功能：
  *  (1)Toolbar标题栏的封装
- *  (2)状态栏颜色的封装
+ *  (2)设置状态栏颜色的封装
+ *  (3)屏幕横竖屏切换的封装
  *
  * @author ChenYu
  * @since 2019.11.05
@@ -43,19 +45,30 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (savedInstanceState != null){
-            initParam(savedInstanceState);
-        }else if (getIntent() != null && getIntent().getExtras() != null){
-            initParam(getIntent().getExtras());
+        if (useSupportedToolbar()) {
+            setupView();    //使用BaseActivity提供的toolbar
+        }else {
+            setupViewWithoutToolbar();  //不使用toolbar，布局相关操作仅仅交由子Activity完成
         }
-        setupView();
-        initView();
+        initView(savedInstanceState);
         initData();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        if (getMenuResourceId() == 0)
+            return false;
+        else {
+            getMenuInflater().inflate(getMenuResourceId(),menu);
+            return true;
+        }
     }
 
     protected abstract int getContentViewId();
 
-    protected abstract void initView();
+    protected abstract boolean useSupportedToolbar();
+
+    protected abstract void initView(@Nullable Bundle savedInstanceState);
 
     protected abstract void initData();
 
@@ -66,11 +79,11 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         View view = getLayoutInflater().inflate(R.layout.common_toolbar,mRootView);
         mToolbar = view.findViewById(R.id.common_toolbar);
+        setSupportActionBar(mToolbar);
+        mToolbar.setOverflowIcon(getResources().getDrawable(R.mipmap.ic_overflow_button_32px));
         mToolbar.setNavigationIcon(R.mipmap.ic_arrow_back_white);
-        mToolbar.setNavigationOnClickListener(v -> {
-            onNavigationBackClick();
-            finish();
-        });
+        mToolbar.setNavigationOnClickListener(this::onNavigationBackClick);
+        mToolbar.setOnMenuItemClickListener(this::onMenuItemClick);
         mContentView = getLayoutInflater().inflate(getContentViewId(),mRootView);
 
         setContentView(mRootView);
@@ -79,41 +92,50 @@ public abstract class BaseActivity extends AppCompatActivity {
         setStatusbarColor(R.color.colorPrimary);
     }
 
-    protected Toolbar getToolbar(){
+    private void setupViewWithoutToolbar(){
+        setContentView(getContentViewId());
+        setScreenOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setStatusbarColor(R.color.colorPrimary);
+    }
+
+    @Nullable
+    protected final Toolbar getToolbar(){
         return mToolbar;
     }
 
-    protected void onNavigationBackClick(){
-
+    protected void onNavigationBackClick(View view){
+        finish();
     }
 
-    protected void initParam(Bundle bundle){
-
+    protected boolean onMenuItemClick(MenuItem menuItem){
+        return false;
     }
 
-    protected void setToolbarTitle(String title){
+    protected int getMenuResourceId(){
+        return 0;
+    }
+
+    protected final void setToolbarTitle(String title){
         if (mToolbar != null){
             mToolbar.setTitle(title);
         }
     }
 
-    protected void setToolbarTitle(int titleResId){
+    protected final void setToolbarTitle(int titleResId){
         if (mToolbar != null){
             mToolbar.setTitle(titleResId);
         }
     }
 
-    protected void setStatusbarColor(String color){
+    protected final void setStatusbarColor(String color){
         StatusBarCompat.setStatusBarColor(this,Color.parseColor(color));
     }
 
-    protected void setStatusbarColor(@ColorRes int colorResId){
+    protected final void setStatusbarColor(@ColorRes int colorResId){
         StatusBarCompat.setStatusBarColor(this,getResources().getColor(colorResId));
     }
 
-    protected void setScreenOrientation(int orientation){
+    protected final void setScreenOrientation(int orientation){
         setRequestedOrientation(orientation);
     }
-
-
 }

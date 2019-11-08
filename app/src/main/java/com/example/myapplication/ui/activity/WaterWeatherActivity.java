@@ -1,15 +1,15 @@
 package com.example.myapplication.ui.activity;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import com.example.myapplication.R;
 
-public class TestActivity extends BaseActivity {
+import androidx.annotation.Nullable;
 
+public class WaterWeatherActivity extends BaseActivity {
     @Override
     protected int getContentViewId() {
-        return R.layout.activity_test_main;
+        return R.layout.activity_water_weather_main;
     }
 
     @Override
@@ -18,8 +18,8 @@ public class TestActivity extends BaseActivity {
     }
 
     @Override
-    protected void initView(Bundle savedInstanceState) {
-        Log.d(TAG,"Test init view");
+    protected void initView(@Nullable Bundle savedInstanceState) {
+        
     }
 
     @Override

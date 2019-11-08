@@ -73,4 +73,7 @@
     <string name="activity_dam_seepage_title">监测-大坝渗流</string>
     <string name="activity_water_diversion_title">监测-引水系统</string>
     <string name="activity_water_quality_title">监测-水库水质</string>
+
+    <!-- 水文气象 -->
+    <string name="activity_water_weather_title">监测-水文气象</string>
 </resources>
