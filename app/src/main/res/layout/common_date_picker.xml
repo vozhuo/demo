@@ -7,10 +7,10 @@
 
     <ImageView
         android:id="@+id/iv_calendar"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="5dp"
+        android:layout_gravity="center_vertical"
         app:srcCompat="@drawable/icon_calendar" />
 
     <Button
@@ -18,7 +18,8 @@
         android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:background="@drawable/drawable_button_sec"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white"
+        android:textSize="18sp"/>
 
     <ImageButton
         android:id="@+id/ib_date_picker"

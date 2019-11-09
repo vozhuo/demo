@@ -76,4 +76,16 @@
 
     <!-- 水文气象 -->
     <string name="activity_water_weather_title">监测-水文气象</string>
+    <string name="activity_water_weather_weather_text">气象</string>
+    <string name="activity_water_weather_weather_graph_text">气象-曲线图</string>
+    <string name="activity_water_weather_hydrology_text">水文</string>
+    <string name="activity_water_weather_hydrology_graph_text">水文-曲线图</string>
+    <string name="activity_water_weather_weather_graph_max_temperature_text">最高气温</string>
+    <string name="activity_water_weather_weather_graph_min_temperature_text">最低气温</string>
+    <string name="activity_water_weather_weather_graph_avg_temperature_text">平均气温</string>
+    <string name="activity_water_weather_hydrology_graph_rainfall_capacity_text">降雨量</string>
+    <string name="activity_water_weather_hydrology_graph_evaporation_capacity_text">蒸发量</string>
+    <string name="activity_water_weather_hydrology_graph_inflow_capacity_text">来水量</string>
+    <string name="activity_water_weather_hydrology_graph_useWater_capacity_text">用水量</string>
+    <string name="activity_water_weather_hydrology_graph_amountOfWater_capacity_text">泄洪量</string>
 </resources>

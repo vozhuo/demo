@@ -1,11 +1,14 @@
 package com.example.myapplication.model;
 
 import android.annotation.SuppressLint;
-import android.util.Log;
 
 import com.example.myapplication.R;
+import com.example.myapplication.entity.SingleDayHydrologyData;
+import com.example.myapplication.entity.SingleDayWeatherData;
 import com.example.myapplication.entity.UAVVideoItemEntity;
+import com.example.myapplication.entity.WaterWeatherEntity;
 import com.example.myapplication.event.UAVPatrolVideoEvent;
+import com.example.myapplication.event.WaterWeatherEvent;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -14,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 public class MonitorDataModel{
 
@@ -30,6 +34,10 @@ public class MonitorDataModel{
 
     private static class MonitorDataModelHolder{
         private static final MonitorDataModel sInstance = new MonitorDataModel();
+    }
+
+    public void queryWaterWeatherData(){
+        EventBus.getDefault().post(new WaterWeatherEvent(generateWaterWeatherData()));
     }
 
     public void queryUAVVideobyDate(Date queryDate){
@@ -87,4 +95,65 @@ public class MonitorDataModel{
         return list;
     }
 
+    private WaterWeatherEntity generateWaterWeatherData(){
+        Random random = new Random();
+        int minTem = 15;
+        int maxTem = 30;
+        int step = 5;
+        WaterWeatherEntity entity = new WaterWeatherEntity();
+
+        List<SingleDayWeatherData> dayWeatherDataList = new ArrayList<>();
+        for (int i = 0;i < 30;i++){
+            dayWeatherDataList.add(simulateSingleDayWeather(random.nextInt(step) + minTem,random.nextInt(step) + maxTem));
+        }
+
+        List<SingleDayHydrologyData> dayHydrologyData = new ArrayList<>();
+        for (int i = 0;i < 30;i++){
+            dayHydrologyData.add(simulateSingleDayHydrology(random.nextInt(5) + 2,random.nextInt(5) + 10));
+        }
+
+        entity.setMonthWeatherData(dayWeatherDataList);
+        entity.setMonthHydrologyData(dayHydrologyData);
+        return entity;
+    }
+
+    private SingleDayWeatherData simulateSingleDayWeather(int minValue,int maxValue){
+        Random random = new Random();
+        SingleDayWeatherData dayWeatherData = new SingleDayWeatherData();
+        dayWeatherData.setMaxTemperature(maxValue);
+        dayWeatherData.setMinTemperature(minValue);
+        dayWeatherData.setAvgTemperature((maxValue + minValue) / 2);
+        dayWeatherData.setWeatherType(random.nextInt(5));
+
+        List<Float> hourTemperatures = new ArrayList<>();
+        for (int i = 0;i < 24;i++){
+            hourTemperatures.add((float) (random.nextInt(maxValue - minValue) + minValue));
+        }
+
+        List<Float> sensibleTemperatures = new ArrayList<>();
+        for (int i = 0;i < 24;i++){
+            sensibleTemperatures.add((float) (random.nextInt(maxValue - minValue - 2) + minValue));
+        }
+
+        List<Integer> weatherTypes = new ArrayList<>();
+        for (int i = 0;i < 24;i++){
+            weatherTypes.add(random.nextInt(5));
+        }
+
+        dayWeatherData.setHoursTemperatureList(hourTemperatures);
+        dayWeatherData.setHoursSensibleTemperatureList(sensibleTemperatures);
+        dayWeatherData.setWeatherTypeList(weatherTypes);
+        return dayWeatherData;
+    }
+
+    private SingleDayHydrologyData simulateSingleDayHydrology(int minValue,int maxValue){
+        Random random = new Random();
+        SingleDayHydrologyData dayHydrologyData = new SingleDayHydrologyData();
+        dayHydrologyData.setRainfallCapacity(random.nextInt(maxValue - minValue) + minValue);
+        dayHydrologyData.setEvaporationCapacity(random.nextInt(maxValue - minValue) + minValue);
+        dayHydrologyData.setInflowCapacity(random.nextInt(20000) + 50000);
+        dayHydrologyData.setUsedWaterCapacity(random.nextInt(20000) + 50000);
+        dayHydrologyData.setAmountOfWaterCapacity(random.nextInt(20000) + 10000);
+        return dayHydrologyData;
+    }
 }

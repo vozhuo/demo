@@ -1,6 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/activity_water_weather_main_background">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include layout="@layout/common_date_picker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:text="@string/activity_water_weather_weather_text"
+                android:textSize="24sp"
+                android:textColor="#FFFFFF" />
+            <include layout="@layout/activity_water_weather_main_weather_child"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="15dp"
+                android:text="@string/activity_water_weather_weather_graph_text"
+                android:textSize="24sp"
+                android:textColor="#FFFFFF" />
+            <include layout="@layout/activity_water_weather_main_weather_graph_child"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/activity_water_weather_hydrology_text"
+                android:textSize="24sp"
+                android:textColor="#FFFFFF" />
+            <include layout="@layout/activity_water_weather_main_hydrology_child"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/activity_water_weather_hydrology_graph_text"
+                android:textSize="24sp"
+                android:textColor="#FFFFFF" />
+            <include layout="@layout/activity_water_weather_main_hydrology_graph_child"/>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
 
 </LinearLayout>

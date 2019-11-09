@@ -23,6 +23,15 @@
     <!-- 视频播放页面相关颜色 -->
     <color name="video_player_controller_widget_background">#aa060606</color>
     <color name="video_player_thumb_tint">#54da62</color>
-    <color name="vide_player_progress_background">#6c6c6c</color>
+    <color name="video_player_progress_background">#6c6c6c</color>
     <color name="video_player_progress_secondary_color">#5f8462</color>
+
+    <!-- 监测-水文气象页面相关颜色 -->
+    <color name="activity_water_weather_main_background">#C9DAEE</color>
+    <color name="activity_water_weather_item_background">#9DBFDD</color>
+    <color name="activity_water_weather_weather_graph_avg_temperature_color">#7132A1</color>
+    <color name="activity_water_weather_weather_graph_max_temperature_color">#3076B6</color>
+    <color name="activity_water_weather_weather_graph_min_temperature_color">#02B151</color>
+    <color name="activity_water_weather_hydrology_graph_rainfall_capacity_color">#3076B6</color>
+    <color name="activity_water_weather_hydrology_graph_evaporation_capacity_color">#FFC002</color>
 </resources>
