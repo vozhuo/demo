@@ -1,9 +1,7 @@
 package com.example.myapplication.ui.activity;
 
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,20 +14,16 @@ import com.example.myapplication.adapter.WaterDiversionAdapter;
 import com.example.myapplication.entity.BasicEntity;
 import com.example.myapplication.entity.WaterDiversionEntity;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 public class WaterDiversionActivity extends AppCompatActivity {
-    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_water_diversion);
-        mToolbar = findViewById(R.id.common_toolbar);
+        Toolbar mToolbar = findViewById(R.id.common_toolbar);
         mToolbar.setTitle(R.string.activity_water_diversion_title);
         mToolbar.setNavigationIcon(R.mipmap.ic_arrow_back_white);
         mToolbar.setNavigationOnClickListener(v -> finish());
@@ -42,35 +36,20 @@ public class WaterDiversionActivity extends AppCompatActivity {
 
         mAdapter.setOnItemChildClickListener((adapter, view, position) -> {
             WaterDiversionEntity item = mAdapter.getItem(position);
-            if (view.getId() == R.id.btn_water_graph) {
+            if (view.getId() == R.id.btn_graph) {
+                ArrayList<String> list = new ArrayList<>();
+                for (BasicEntity d : item.getWaterlist()) {
+                    list.add(d.getNumber() + "压力计");
+                }
                 Intent intent = new Intent(this, WaterDiversionGraphActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("activity_title", getString(R.string.activity_water_diversion_title));
+                bundle.putStringArrayList("list", list);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
 
-        Button date_picker = findViewById(R.id.btn_calendar);
-
-        String time = SimpleDateFormat.getDateInstance().format(new Date());
-        date_picker.setText(time);
-
-        final Calendar calendar = Calendar.getInstance();
-
-        date_picker.setOnClickListener(v -> {
-            DatePickerDialog datePickerDialog = new DatePickerDialog(WaterDiversionActivity.this,
-                    (view, year, month, dayOfMonth) -> {
-                        calendar.set(Calendar.YEAR, year);
-                        calendar.set(Calendar.MONTH, month);
-                        calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                        date_picker.setText(SimpleDateFormat.getDateInstance().format(calendar.getTime()));
-
-                    }, calendar.get(Calendar.YEAR),
-                    calendar.get(Calendar.MONTH),
-                    calendar.get(Calendar.DAY_OF_MONTH));
-            datePickerDialog.show();
-        });
     }
 
     private List<WaterDiversionEntity> dataList() {

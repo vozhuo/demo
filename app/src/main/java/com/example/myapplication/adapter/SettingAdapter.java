@@ -9,14 +9,14 @@ import com.example.myapplication.R;
 
 import java.util.List;
 
-public class WaterGraphAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
-    public WaterGraphAdapter(@Nullable List<String> data) {
-        super(R.layout.item_water_diversion_graph, data);
+public class SettingAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
+
+    public SettingAdapter(@Nullable List<String> data) {
+        super(R.layout.item_account_setting, data);
     }
 
     @Override
     protected void convert(@NonNull BaseViewHolder helper, String item) {
-        helper.setText(R.id.tv_sub_header_left, item + "-曲线图")
-                .setVisible(R.id.btn_graph, false);
+        helper.setText(R.id.tv_setting, item);
     }
 }

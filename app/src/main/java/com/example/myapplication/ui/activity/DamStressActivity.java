@@ -2,8 +2,8 @@ package com.example.myapplication.ui.activity;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,23 +41,24 @@ public class DamStressActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mAdapter);
 
+        set_date_picker();
+    }
 
-        Button date_picker = findViewById(R.id.btn_calendar);
-
-        String time = SimpleDateFormat.getDateInstance().format(new Date());
-        date_picker.setText(time);
-
+    private void set_date_picker() {
         final Calendar calendar = Calendar.getInstance();
+        String today = SimpleDateFormat.getDateInstance().format(new Date());
 
-        ImageButton ib_date_picker = findViewById(R.id.ib_date_picker);
+        TextView tv_date = findViewById(R.id.tv_date);
+        tv_date.setText(today);
 
-        date_picker.setOnClickListener(v -> {
+        ImageView iv_date_picker = findViewById(R.id.iv_date_picker);
+        iv_date_picker.setOnClickListener(v -> {
             DatePickerDialog datePickerDialog = new DatePickerDialog(DamStressActivity.this,
                     (view, year, month, dayOfMonth) -> {
                         calendar.set(Calendar.YEAR, year);
                         calendar.set(Calendar.MONTH, month);
                         calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                        date_picker.setText(SimpleDateFormat.getDateInstance().format(calendar.getTime()));
+                        tv_date.setText(SimpleDateFormat.getDateInstance().format(calendar.getTime()));
 
                     }, calendar.get(Calendar.YEAR),
                     calendar.get(Calendar.MONTH),

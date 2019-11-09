@@ -59,7 +59,8 @@ public class WaterWeatherActivity extends BaseActivity {
     private TextView mThreeDayWeatherDescTv;
     private TextView mThreeDayTempRangeTv;
 
-    private Button mCalendarBtn;
+    private ImageView mCalendarBtn;
+    private TextView mCalendarTv;
     private TextView mRainFallCapacityTv;
     private TextView mEvaporationCapacityTv;
     private TextView mInflowCapacityTv;
@@ -90,8 +91,9 @@ public class WaterWeatherActivity extends BaseActivity {
         mInflowCapacityTv = findViewById(R.id.activity_water_weather_main_inflow_capacity_tv);
         mUseWaterCapacityTv = findViewById(R.id.activity_water_weather_main_use_water_capacity_tv);
         mAmountOfWaterCapacityTv = findViewById(R.id.activity_water_weather_main_amountofwater_capacity_tv);
-        mCalendarBtn = findViewById(R.id.btn_calendar);
-        mCalendarBtn.setText(SimpleDateFormat.getDateInstance().format(new Date()));
+        mCalendarTv = findViewById(R.id.tv_date);
+        mCalendarBtn = findViewById(R.id.iv_date_picker);
+        mCalendarTv.setText(SimpleDateFormat.getDateInstance().format(new Date()));
 
         mCalendar = Calendar.getInstance();
         mCalendarBtn.setOnClickListener(v -> {
@@ -100,7 +102,7 @@ public class WaterWeatherActivity extends BaseActivity {
                         mCalendar.set(Calendar.YEAR, year);
                         mCalendar.set(Calendar.MONTH, month);
                         mCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                        mCalendarBtn.setText(SimpleDateFormat.getDateInstance().format(mCalendar.getTime()));
+                        mCalendarTv.setText(SimpleDateFormat.getDateInstance().format(mCalendar.getTime()));
 
                     }, mCalendar.get(Calendar.YEAR),
                     mCalendar.get(Calendar.MONTH),

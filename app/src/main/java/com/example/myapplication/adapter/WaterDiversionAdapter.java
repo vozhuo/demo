@@ -19,8 +19,8 @@ public class WaterDiversionAdapter extends BaseQuickAdapter<WaterDiversionEntity
 
     @Override
     protected void convert(@NonNull BaseViewHolder helper, WaterDiversionEntity item) {
-        helper.setText(R.id.tv_water_name, item.getName())
-                .addOnClickListener(R.id.btn_water_graph);
+        helper.setText(R.id.tv_sub_header_left, item.getName())
+                .addOnClickListener(R.id.btn_graph);
 
         RecyclerView mRecyclerView = helper.getView(R.id.rv_water_diversion_detail);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));

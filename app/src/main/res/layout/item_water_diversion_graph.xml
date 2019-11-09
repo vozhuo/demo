@@ -5,22 +5,25 @@
     android:orientation="vertical">
 
     <include
-        layout="@layout/ll_subheader_bar"
+        layout="@layout/common_sub_header_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <com.github.mikephil.charting.charts.LineChart
+        android:background="@drawable/bg_color"
         android:id="@+id/iv_water_chart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/iv_water_chart2"
+        android:background="@drawable/bg_color"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/iv_water_chart3"
+        android:background="@drawable/bg_color"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 </LinearLayout>
