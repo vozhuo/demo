@@ -31,8 +31,8 @@ public class SecurityFragment extends Fragment {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.setAdapter(mAdapter);
 
-        TextView tv1 = root.findViewById(R.id.tv_top1);
-        TextView tv2 = root.findViewById(R.id.tv_top2);
+        TextView tv1 = root.findViewById(R.id.tv_left);
+        TextView tv2 = root.findViewById(R.id.tv_right);
         tv1.setText("功能区");
         tv2.setText("状态");
 

@@ -8,7 +8,7 @@
 
     <include
         android:id="@+id/include"
-        layout="@layout/ll_top_bar"
+        layout="@layout/common_header_bar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -18,7 +18,7 @@
         android:id="@+id/rv_warning_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#80FFEB3B"
+        android:background="@drawable/bg_yellow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
