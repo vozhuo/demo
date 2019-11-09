@@ -28,7 +28,7 @@ public class WaterQualityActivity extends AppCompatActivity {
         mToolbar.setTitle(R.string.activity_water_quality_title);
         mToolbar.setNavigationIcon(R.mipmap.ic_arrow_back_white);
         mToolbar.setNavigationOnClickListener(v -> finish());
-        TextView tv_name = findViewById(R.id.tv_subheader_name);
+        TextView tv_name = findViewById(R.id.tv_sub_header_left);
         tv_name.setText("水库水质");
         TextView tv_left = findViewById(R.id.tv_para_left);
         tv_left.setText("参数");

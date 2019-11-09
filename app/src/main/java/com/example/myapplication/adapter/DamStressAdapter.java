@@ -17,7 +17,8 @@ public class DamStressAdapter extends BaseQuickAdapter<DamStressEntity, BaseView
 
     @Override
     protected void convert(@NonNull BaseViewHolder helper, DamStressEntity item) {
-        helper.setText(R.id.tv_left, item.getName());
+        helper.setText(R.id.tv_sub_header_left, item.getName())
+                .setVisible(R.id.btn_graph, false);
 
         String text = "";
         text += "最大应力：" + item.getValue().get(0) + "Mpa\n";

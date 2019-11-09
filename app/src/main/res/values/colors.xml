@@ -25,4 +25,7 @@
     <color name="video_player_thumb_tint">#54da62</color>
     <color name="vide_player_progress_background">#6c6c6c</color>
     <color name="video_player_progress_secondary_color">#5f8462</color>
+
+
+    <color name="common_sub_header_light_blue">#4D2196F3</color>
 </resources>

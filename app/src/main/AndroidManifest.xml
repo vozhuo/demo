@@ -53,7 +53,6 @@
         <activity android:name=".ui.activity.UAVPatrolActivity"/>
         <activity android:name=".ui.activity.DamStressActivity"/>
         <activity android:name=".ui.activity.DamSeepageActivity"/>
-        <activity android:name=".ui.activity.DamSeepageDetailActivity"/>
         <activity android:name=".ui.activity.WaterDiversionActivity"/>
         <activity android:name=".ui.activity.WaterDiversionGraphActivity"/>
         <activity android:name=".ui.activity.VideoPlayerActivity"

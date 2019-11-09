@@ -7,25 +7,18 @@
 
     <include layout="@layout/common_toolbar" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="坝体渗流监测布置图" />
+    <include layout="@layout/common_sub_header_center" />
 
     <Spinner
         android:id="@+id/spinner"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:entries="@array/devices" />
-
-    <ImageView
-        android:id="@+id/imageView2"
+        android:layout_margin="8dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center" />
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:srcCompat="@drawable/seepage_map" />
 
 </LinearLayout>
