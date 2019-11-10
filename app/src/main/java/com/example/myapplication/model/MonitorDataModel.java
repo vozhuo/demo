@@ -1,14 +1,17 @@
 package com.example.myapplication.model;
 
 import android.annotation.SuppressLint;
+import android.util.Log;
 
 import com.example.myapplication.R;
+import com.example.myapplication.entity.FutureHourWeatherEntity;
 import com.example.myapplication.entity.SingleDayHydrologyData;
 import com.example.myapplication.entity.SingleDayWeatherData;
 import com.example.myapplication.entity.UAVVideoItemEntity;
 import com.example.myapplication.entity.WaterWeatherEntity;
 import com.example.myapplication.event.UAVPatrolVideoEvent;
 import com.example.myapplication.event.WaterWeatherEvent;
+import com.example.myapplication.util.WeatherUtils;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -101,25 +104,38 @@ public class MonitorDataModel{
         int maxTem = 30;
         int step = 5;
         WaterWeatherEntity entity = new WaterWeatherEntity();
+        Calendar calendar = Calendar.getInstance();
 
+        List<FutureHourWeatherEntity> hourWeatherList = new ArrayList<>();
+        for (int i = 0;i < 24;i++){
+            hourWeatherList.add(simulateAnHourWeather(minTem,maxTem,calendar.getTime()));
+            calendar.add(Calendar.HOUR_OF_DAY,1);
+        }
+
+        calendar = Calendar.getInstance();
         List<SingleDayWeatherData> dayWeatherDataList = new ArrayList<>();
         for (int i = 0;i < 30;i++){
-            dayWeatherDataList.add(simulateSingleDayWeather(random.nextInt(step) + minTem,random.nextInt(step) + maxTem));
+            dayWeatherDataList.add(simulateSingleDayWeather(random.nextInt(step) + minTem,random.nextInt(step) + maxTem,calendar.getTime()));
+            calendar.add(Calendar.DAY_OF_MONTH,1);
         }
 
+        calendar = Calendar.getInstance();
         List<SingleDayHydrologyData> dayHydrologyData = new ArrayList<>();
         for (int i = 0;i < 30;i++){
-            dayHydrologyData.add(simulateSingleDayHydrology(random.nextInt(5) + 2,random.nextInt(5) + 10));
+            dayHydrologyData.add(simulateSingleDayHydrology(random.nextInt(5) + 2,random.nextInt(5) + 10,calendar.getTime()));
+            calendar.add(Calendar.DAY_OF_MONTH,1);
         }
 
+        entity.setFutureHourWeatherData(hourWeatherList);
         entity.setMonthWeatherData(dayWeatherDataList);
         entity.setMonthHydrologyData(dayHydrologyData);
         return entity;
     }
 
-    private SingleDayWeatherData simulateSingleDayWeather(int minValue,int maxValue){
+    private SingleDayWeatherData simulateSingleDayWeather(int minValue,int maxValue,Date date){
         Random random = new Random();
         SingleDayWeatherData dayWeatherData = new SingleDayWeatherData();
+        dayWeatherData.setDate(date);
         dayWeatherData.setMaxTemperature(maxValue);
         dayWeatherData.setMinTemperature(minValue);
         dayWeatherData.setAvgTemperature((maxValue + minValue) / 2);
@@ -146,14 +162,22 @@ public class MonitorDataModel{
         return dayWeatherData;
     }
 
-    private SingleDayHydrologyData simulateSingleDayHydrology(int minValue,int maxValue){
+    private SingleDayHydrologyData simulateSingleDayHydrology(int minValue,int maxValue,Date date){
         Random random = new Random();
         SingleDayHydrologyData dayHydrologyData = new SingleDayHydrologyData();
+        dayHydrologyData.setDate(date);
         dayHydrologyData.setRainfallCapacity(random.nextInt(maxValue - minValue) + minValue);
         dayHydrologyData.setEvaporationCapacity(random.nextInt(maxValue - minValue) + minValue);
         dayHydrologyData.setInflowCapacity(random.nextInt(20000) + 50000);
         dayHydrologyData.setUsedWaterCapacity(random.nextInt(20000) + 50000);
         dayHydrologyData.setAmountOfWaterCapacity(random.nextInt(20000) + 10000);
         return dayHydrologyData;
+    }
+
+    private FutureHourWeatherEntity simulateAnHourWeather(int minTemp,int maxTemp,Date date){
+        Random random = new Random();
+        int temperature = random.nextInt(maxTemp - minTemp) + minTemp;
+        int weatherType = random.nextInt(5);
+        return new FutureHourWeatherEntity(temperature,weatherType,date);
     }
 }

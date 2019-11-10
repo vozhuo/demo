@@ -1,5 +1,7 @@
 package com.example.myapplication.entity;
 
+import java.util.Date;
+
 public class SingleDayHydrologyData {
 
     private float rainfallCapacity;
@@ -7,6 +9,7 @@ public class SingleDayHydrologyData {
     private float inflowCapacity;
     private float usedWaterCapacity;
     private float amountOfWaterCapacity;
+    private Date date;
 
     public float getRainfallCapacity() {
         return rainfallCapacity;
@@ -46,5 +49,13 @@ public class SingleDayHydrologyData {
 
     public void setAmountOfWaterCapacity(float amountOfWaterCapacity) {
         this.amountOfWaterCapacity = amountOfWaterCapacity;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

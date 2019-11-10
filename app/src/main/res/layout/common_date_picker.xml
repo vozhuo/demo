@@ -30,8 +30,6 @@
             android:textSize="18sp"
             android:textColor="@android:color/white" />
     </RelativeLayout>
->>>>>>> origin/master
-
     <ImageView
         android:id="@+id/iv_date_picker"
         android:layout_width="40dp"

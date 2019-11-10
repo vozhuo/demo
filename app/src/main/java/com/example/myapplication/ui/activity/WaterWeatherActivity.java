@@ -3,14 +3,19 @@ package com.example.myapplication.ui.activity;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.adapter.DayWeatherAdapter;
+import com.example.myapplication.adapter.HourWeatherAdapter;
 import com.example.myapplication.entity.SingleDayWeatherData;
 import com.example.myapplication.entity.WaterWeatherEntity;
+import com.example.myapplication.util.DateXValueFormatter;
+import com.example.myapplication.util.ScreenUtils;
+import com.example.myapplication.util.WeatherUtils;
 import com.example.myapplication.viewmodel.WaterWeatherViewModel;
+import com.example.myapplication.widget.SpaceItemDecoration;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.Entry;
@@ -25,6 +30,8 @@ import java.util.List;
 
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class WaterWeatherActivity extends BaseActivity {
 
@@ -33,31 +40,8 @@ public class WaterWeatherActivity extends BaseActivity {
     private TextView mCurrentTempRangeTv;
     private TextView mCurrentSensibleTempTv;
 
-    private TextView mOneHourTv;
-    private ImageView mOneHourWeatherIv;
-    private TextView mOneHourTempTv;
-    private TextView mTwoHourTv;
-    private ImageView mTwoHourWeatherIv;
-    private TextView mTwoHourTempTv;
-    private TextView mThreeHourTv;
-    private ImageView mThreeHourWeatherIv;
-    private TextView mThreeHourTempTv;
-    private TextView mFourHourTv;
-    private ImageView mFourHourWeatherIv;
-    private TextView mFourHourTempTv;
-
-    private ImageView mTodayWeatherIv;
-    private TextView mTodayWeatherDescTv;
-    private TextView mTodayTempRangeTv;
-    private ImageView mOneDayWeatherIv;
-    private TextView mOneDayWeatherDescTv;
-    private TextView mOneDayTempRangeTv;
-    private ImageView mTwoDayWeatherIv;
-    private TextView mTwoDayWeatherDescTv;
-    private TextView mTwoDayTempRangeTv;
-    private ImageView mThreeDayWeatherIv;
-    private TextView mThreeDayWeatherDescTv;
-    private TextView mThreeDayTempRangeTv;
+    private RecyclerView mHourWeatherRecyclerView;
+    private RecyclerView mDayWeatherRecyclerView;
 
     private ImageView mCalendarBtn;
     private TextView mCalendarTv;
@@ -71,7 +55,10 @@ public class WaterWeatherActivity extends BaseActivity {
     private LineChart mHydrologyChart1;
     private LineChart mHydrologyChart2;
 
+    private HourWeatherAdapter mHourWeatherAdapter;
+    private DayWeatherAdapter mDayWeatherAdapter;
     private Calendar mCalendar;
+    private DateXValueFormatter mDateXValueFormatter;
     private WaterWeatherViewModel mViewModel;
 
     @Override
@@ -110,7 +97,7 @@ public class WaterWeatherActivity extends BaseActivity {
             datePickerDialog.show();
         });
 
-        initWeatherDescriptionView();
+        initWeatherPartView();
         initChartView();
     }
 
@@ -176,49 +163,49 @@ public class WaterWeatherActivity extends BaseActivity {
             //天气的数据展示
             //实时数据
             SingleDayWeatherData singleDayWeatherData = waterWeatherEntity.getMonthWeatherData().get(0);
-            mCurrentWeatherIv.setImageResource(WaterWeatherEntity.parseWeatherTypeToResId(singleDayWeatherData.getWeatherType()));
-            mCurrentTempTv.setText(WaterWeatherEntity.formatTemperature(singleDayWeatherData.getHoursTemperatureList().get(0)));
-            mCurrentSensibleTempTv.setText(WaterWeatherEntity.formatTemperature(singleDayWeatherData.getHoursSensibleTemperatureList().get(0)));
-            mCurrentTempRangeTv.setText(WaterWeatherEntity.formatTemperatureRange(singleDayWeatherData.getMinTemperature(),singleDayWeatherData.getMaxTemperature()));
+            mCurrentWeatherIv.setImageResource(WeatherUtils.parseWeatherTypeToResId(waterWeatherEntity.getFutureHourWeatherData().get(0).getHourWeatherType()));
+            mCurrentTempTv.setText(WeatherUtils.formatTemperature(waterWeatherEntity.getFutureHourWeatherData().get(0).getHourTemperature()));
+            mCurrentSensibleTempTv.setText(WeatherUtils.formatTemperature(singleDayWeatherData.getHoursSensibleTemperatureList().get(0)));
+            mCurrentTempRangeTv.setText(WeatherUtils.formatTemperatureRange(singleDayWeatherData.getMinTemperature(),singleDayWeatherData.getMaxTemperature()));
 
             //未来四个小时的数据：
-            mOneHourTv.setText(WaterWeatherEntity.formatHour(8));
-            mOneHourTempTv.setText(WaterWeatherEntity.formatTemperature(waterWeatherEntity.getMonthWeatherData().get(0).getHoursTemperatureList().get(8)));
-            mOneHourWeatherIv.setImageResource(WaterWeatherEntity.parseWeatherTypeToResId(waterWeatherEntity.getMonthWeatherData().get(0).getWeatherTypeList().get(8)));
-
-            mTwoHourTv.setText(WaterWeatherEntity.formatHour(9));
-            mTwoHourTempTv.setText(WaterWeatherEntity.formatTemperature(waterWeatherEntity.getMonthWeatherData().get(0).getHoursTemperatureList().get(9)));
-            mTwoHourWeatherIv.setImageResource(WaterWeatherEntity.parseWeatherTypeToResId(waterWeatherEntity.getMonthWeatherData().get(0).getWeatherTypeList().get(9)));
-
-            mThreeHourTv.setText(WaterWeatherEntity.formatHour(10));
-            mThreeHourTempTv.setText(WaterWeatherEntity.formatTemperature(waterWeatherEntity.getMonthWeatherData().get(0).getHoursTemperatureList().get(10)));
-            mThreeHourWeatherIv.setImageResource(WaterWeatherEntity.parseWeatherTypeToResId(waterWeatherEntity.getMonthWeatherData().get(0).getWeatherTypeList().get(10)));
-
-            mFourHourTv.setText(WaterWeatherEntity.formatHour(11));
-            mFourHourTempTv.setText(WaterWeatherEntity.formatTemperature(waterWeatherEntity.getMonthWeatherData().get(0).getHoursTemperatureList().get(11)));
-            mFourHourWeatherIv.setImageResource(WaterWeatherEntity.parseWeatherTypeToResId(waterWeatherEntity.getMonthWeatherData().get(0).getWeatherTypeList().get(11)));
+            mHourWeatherAdapter.setNewData(waterWeatherEntity.getFutureHourWeatherData().subList(1,5));
 
             //今天以及未来三天的数据：
-            mTodayWeatherIv.setImageResource(WaterWeatherEntity.parseWeatherTypeToResId(waterWeatherEntity.getMonthWeatherData().get(1).getWeatherType()));
-            mTodayWeatherDescTv.setText(WaterWeatherEntity.parseWeatherTypeToString(waterWeatherEntity.getMonthWeatherData().get(1).getWeatherType()));
-            mTodayTempRangeTv.setText(WaterWeatherEntity.formatTemperatureRange(waterWeatherEntity.getMonthWeatherData().get(1).getMinTemperature(),waterWeatherEntity.getMonthWeatherData().get(1).getMaxTemperature()));
-
-            mOneDayWeatherIv.setImageResource(WaterWeatherEntity.parseWeatherTypeToResId(waterWeatherEntity.getMonthWeatherData().get(2).getWeatherType()));
-            mOneDayWeatherDescTv.setText(WaterWeatherEntity.parseWeatherTypeToString(waterWeatherEntity.getMonthWeatherData().get(2).getWeatherType()));
-            mOneDayTempRangeTv.setText(WaterWeatherEntity.formatTemperatureRange(waterWeatherEntity.getMonthWeatherData().get(2).getMinTemperature(),waterWeatherEntity.getMonthWeatherData().get(2).getMaxTemperature()));
-
-            mTwoDayWeatherIv.setImageResource(WaterWeatherEntity.parseWeatherTypeToResId(waterWeatherEntity.getMonthWeatherData().get(3).getWeatherType()));
-            mTwoDayWeatherDescTv.setText(WaterWeatherEntity.parseWeatherTypeToString(waterWeatherEntity.getMonthWeatherData().get(3).getWeatherType()));
-            mTwoDayTempRangeTv.setText(WaterWeatherEntity.formatTemperatureRange(waterWeatherEntity.getMonthWeatherData().get(3).getMinTemperature(),waterWeatherEntity.getMonthWeatherData().get(3).getMaxTemperature()));
-
-            mThreeDayWeatherIv.setImageResource(WaterWeatherEntity.parseWeatherTypeToResId(waterWeatherEntity.getMonthWeatherData().get(4).getWeatherType()));
-            mThreeDayWeatherDescTv.setText(WaterWeatherEntity.parseWeatherTypeToString(waterWeatherEntity.getMonthWeatherData().get(4).getWeatherType()));
-            mThreeDayTempRangeTv.setText(WaterWeatherEntity.formatTemperatureRange(waterWeatherEntity.getMonthWeatherData().get(4).getMinTemperature(),waterWeatherEntity.getMonthWeatherData().get(4).getMaxTemperature()));
+            mDayWeatherAdapter.setNewData(waterWeatherEntity.getMonthWeatherData().subList(0,4));
         });
         mViewModel.queryWaterWeatherData();
     }
 
+    private void initWeatherPartView(){
+        mCurrentWeatherIv = findViewById(R.id.activity_water_weather_main_current_weather_iv);
+        mCurrentTempTv = findViewById(R.id.activity_water_weather_main_current_tempeature_tv);
+        mCurrentTempRangeTv = findViewById(R.id.activity_water_weather_main_current_temperature_range_tv);
+        mCurrentSensibleTempTv = findViewById(R.id.activity_water_weather_main_current_sensible_temperature_tv);
+
+        mHourWeatherRecyclerView = findViewById(R.id.activity_water_weather_main_hour_rv);
+        mHourWeatherAdapter = new HourWeatherAdapter(R.layout.item_future_hour_weather);
+
+        LinearLayoutManager hourLayoutManager = new LinearLayoutManager(this);
+        hourLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
+        SpaceItemDecoration hourWeatherRvDecoration = new SpaceItemDecoration(ScreenUtils.dp2px(this,18),
+                ScreenUtils.dp2px(this,18),0,0);
+        mHourWeatherRecyclerView.setLayoutManager(hourLayoutManager);
+        mHourWeatherRecyclerView.addItemDecoration(hourWeatherRvDecoration);
+        mHourWeatherRecyclerView.setAdapter(mHourWeatherAdapter);
+
+        mDayWeatherRecyclerView = findViewById(R.id.activity_water_weather_main_day_rv);
+        mDayWeatherAdapter = new DayWeatherAdapter(R.layout.item_future_day_weather);
+
+        SpaceItemDecoration dayWeatherRvDecoration = new SpaceItemDecoration(0,0,ScreenUtils.dp2px(this,10),0);
+        mDayWeatherRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mDayWeatherRecyclerView.addItemDecoration(dayWeatherRvDecoration);
+        mDayWeatherRecyclerView.setAdapter(mDayWeatherAdapter);
+
+    }
+
     private void initChartView(){
+        mDateXValueFormatter = new DateXValueFormatter();
         mTemperatureChart1 = findViewById(R.id.activity_water_weather_main_temperature_chart1);
         mTemperatureChart2 = findViewById(R.id.activity_water_weather_main_temperature_chart2);
         mHydrologyChart1 = findViewById(R.id.activity_water_weather_main_hydrology_chart1);
@@ -228,25 +215,29 @@ public class WaterWeatherActivity extends BaseActivity {
         mTemperatureChart1.setTouchEnabled(false);                              //禁止用户对图表进行操作
         mTemperatureChart1.getAxisRight().setEnabled(false);                    //禁用右侧Y轴
         mTemperatureChart1.getAxisLeft().setAxisMinimum(10f);                    //从0°开始
-        mTemperatureChart1.getAxisLeft().setAxisMaximum(50f);                   //最大刻度是60°
+        mTemperatureChart1.getAxisLeft().setAxisMaximum(40f);                   //最大刻度是60°
         mTemperatureChart1.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);  //设置X轴显示位置
         mTemperatureChart1.getXAxis().setDrawAxisLine(false);
         mTemperatureChart1.getXAxis().setDrawGridLines(false);                  //不绘制网格
         mTemperatureChart1.getLegend().setEnabled(false);                       //禁用图例
         mTemperatureChart1.getDescription().setEnabled(false);                  //禁用X轴描述
         mTemperatureChart1.getXAxis().setAxisMinimum(0f);
-        mTemperatureChart1.getXAxis().setAxisMaximum(7f);
+        mTemperatureChart1.getXAxis().setAxisMaximum(6f);
+        mTemperatureChart1.getXAxis().setValueFormatter(mDateXValueFormatter);
+        mTemperatureChart1.getXAxis().setAvoidFirstLastClipping(true);
 
         //temperature chart2:
         mTemperatureChart2.setTouchEnabled(false);                              //禁止用户对图表进行操作
         mTemperatureChart2.getAxisRight().setEnabled(false);                    //禁用右侧Y轴
         mTemperatureChart2.getAxisLeft().setAxisMinimum(10f);                    //从0°开始
-        mTemperatureChart2.getAxisLeft().setAxisMaximum(50f);                   //最大刻度是60°
+        mTemperatureChart2.getAxisLeft().setAxisMaximum(40f);                   //最大刻度是60°
         mTemperatureChart2.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);  //设置X轴显示位置
         mTemperatureChart2.getXAxis().setDrawAxisLine(false);
         mTemperatureChart2.getXAxis().setDrawGridLines(false);                  //不绘制网格
         mTemperatureChart2.getLegend().setEnabled(false);                       //禁用图例
         mTemperatureChart2.getDescription().setEnabled(false);                  //禁用X轴描述
+        mTemperatureChart2.getXAxis().setValueFormatter(mDateXValueFormatter);
+        mTemperatureChart2.getXAxis().setAvoidFirstLastClipping(true);
 
         //hydrology chart1
         mHydrologyChart1.setTouchEnabled(false);                              //禁止用户对图表进行操作
@@ -259,7 +250,9 @@ public class WaterWeatherActivity extends BaseActivity {
         mHydrologyChart1.getLegend().setEnabled(false);                       //禁用图例
         mHydrologyChart1.getDescription().setEnabled(false);                  //禁用X轴描述
         mHydrologyChart1.getXAxis().setAxisMinimum(0f);
-        mHydrologyChart1.getXAxis().setAxisMaximum(7f);
+        mHydrologyChart1.getXAxis().setAxisMaximum(6f);
+        mHydrologyChart1.getXAxis().setValueFormatter(mDateXValueFormatter);
+        mHydrologyChart1.getXAxis().setAvoidFirstLastClipping(true);
 
         //hydrology chart2
         mHydrologyChart2.setTouchEnabled(false);                              //禁止用户对图表进行操作
@@ -271,44 +264,7 @@ public class WaterWeatherActivity extends BaseActivity {
         mHydrologyChart2.getXAxis().setDrawGridLines(false);                  //不绘制网格
         mHydrologyChart2.getLegend().setEnabled(false);                       //禁用图例
         mHydrologyChart2.getDescription().setEnabled(false);                  //禁用X轴描述
-    }
-
-    private void initWeatherDescriptionView(){
-        mCurrentWeatherIv = findViewById(R.id.activity_water_weather_main_current_weather_iv);
-        mCurrentTempTv = findViewById(R.id.activity_water_weather_main_current_tempeature_tv);
-        mCurrentTempRangeTv = findViewById(R.id.activity_water_weather_main_current_temperature_range_tv);
-        mCurrentSensibleTempTv = findViewById(R.id.activity_water_weather_main_current_sensible_temperature_tv);
-
-        mOneHourTv = findViewById(R.id.activity_water_weather_main_one_hour_tv);
-        mOneHourWeatherIv = findViewById(R.id.activity_water_weather_main_one_hour_weather_iv);
-        mOneHourTempTv = findViewById(R.id.activity_water_weather_main_one_hour_temperature_tv);
-
-        mTwoHourTv = findViewById(R.id.activity_water_weather_main_two_hour_tv);
-        mTwoHourWeatherIv = findViewById(R.id.activity_water_weather_main_two_hour_weather_iv);
-        mTwoHourTempTv = findViewById(R.id.activity_water_weather_main_two_hour_temperature_tv);
-
-        mThreeHourTv = findViewById(R.id.activity_water_weather_main_three_hour_tv);
-        mThreeHourWeatherIv = findViewById(R.id.activity_water_weather_main_three_hour_weather_iv);
-        mThreeHourTempTv = findViewById(R.id.activity_water_weather_main_three_hour_temperature_tv);
-
-        mFourHourTv = findViewById(R.id.activity_water_weather_main_four_hour_tv);
-        mFourHourWeatherIv = findViewById(R.id.activity_water_weather_main_four_hour_weather_iv);
-        mFourHourTempTv = findViewById(R.id.activity_water_weather_main_four_hour_temperature_tv);
-
-        mTodayWeatherIv = findViewById(R.id.activity_water_weather_main_today_weather_iv);
-        mTodayWeatherDescTv = findViewById(R.id.activity_water_weather_main_today_weather_description_tv);
-        mTodayTempRangeTv = findViewById(R.id.activity_water_weather_main_today_temperature_range_tv);
-
-        mOneDayWeatherIv = findViewById(R.id.activity_water_weather_main_one_day_weather_iv);
-        mOneDayWeatherDescTv = findViewById(R.id.activity_water_weather_main_one_day_weather_description_tv);
-        mOneDayTempRangeTv = findViewById(R.id.activity_water_weather_main_one_day_temperature_range_tv);
-
-        mTwoDayWeatherIv = findViewById(R.id.activity_water_weather_main_two_day_weather_iv);
-        mTwoDayWeatherDescTv = findViewById(R.id.activity_water_weather_main_two_day_weather_description_tv);
-        mTwoDayTempRangeTv = findViewById(R.id.activity_water_weather_main_two_day_temperature_range_tv);
-
-        mThreeDayWeatherIv = findViewById(R.id.activity_water_weather_main_three_day_weather_iv);
-        mThreeDayWeatherDescTv = findViewById(R.id.activity_water_weather_main_three_day_weather_description_tv);
-        mThreeDayTempRangeTv = findViewById(R.id.activity_water_weather_main_three_day_temperature_range_tv);
+        mHydrologyChart2.getXAxis().setValueFormatter(mDateXValueFormatter);
+        mHydrologyChart2.getXAxis().setAvoidFirstLastClipping(true);
     }
 }

@@ -79,6 +79,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         View view = getLayoutInflater().inflate(R.layout.common_toolbar,mRootView);
         mToolbar = view.findViewById(R.id.common_toolbar);
+        setToolbarTitle(getTitle().toString());
         setSupportActionBar(mToolbar);
         mToolbar.setOverflowIcon(getResources().getDrawable(R.mipmap.ic_overflow_button_32px));
         mToolbar.setNavigationIcon(R.mipmap.ic_arrow_back_white);
@@ -87,7 +88,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         mContentView = getLayoutInflater().inflate(getContentViewId(),mRootView);
 
         setContentView(mRootView);
-        setToolbarTitle(getTitle().toString());
         setScreenOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setStatusbarColor(R.color.colorPrimary);
     }

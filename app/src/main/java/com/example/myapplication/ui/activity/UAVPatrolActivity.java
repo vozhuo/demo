@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
@@ -25,12 +26,12 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class UAVPatrolActivity extends AppCompatActivity {
+public class UAVPatrolActivity extends BaseActivity {
 
     private static final String TAG = "UAVPatrolActivity";
-    private Toolbar mToolbar;
     private RecyclerView mRecyclerView;
     private ImageView mSearchIconIv;
+    private TextView mDateTv;
     private Calendar mCalendar;
 
     private UAVPatrolViewModel mViewModel;
@@ -40,31 +41,32 @@ public class UAVPatrolActivity extends AppCompatActivity {
     private String testUri = "http://vt1.doubanio.com/201904161504/37df49462f42733060e06dea8d38c3fe/view/movie/M/302440458.mp4";
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_uav_patrol_main);
-        initViews();
-        initSettings();
+    protected int getContentViewId() {
+        return R.layout.activity_uav_patrol_main;
     }
 
-    private void initViews(){
+    @Override
+    protected boolean useSupportedToolbar() {
+        return true;
+    }
+
+    @Override
+    protected void initView(@Nullable Bundle savedInstanceState) {
+        setToolbarTitle(R.string.activity_uav_patrol_title_text);
         mCalendar = Calendar.getInstance();
 
-        mToolbar = findViewById(R.id.common_toolbar);
         mRecyclerView = findViewById(R.id.activity_uav_patrol_recyclerview);
-        mSearchIconIv = findViewById(R.id.activity_uav_patrol_search_iv);
+        mSearchIconIv = findViewById(R.id.iv_date_picker);
+        mDateTv = findViewById(R.id.tv_date);
 
-        mToolbar.setNavigationIcon(R.mipmap.ic_arrow_back_white);
-        mToolbar.setNavigationOnClickListener(v -> finish());
-        mToolbar.setTitle(R.string.activity_uav_patrol_title_text);
-
+        mDateTv.setText(SimpleDateFormat.getDateInstance().format(mCalendar.getTime()));
         mSearchIconIv.setOnClickListener(v -> {
             DatePickerDialog datePickerDialog = new DatePickerDialog(this, (view, year, month, dayOfMonth) -> {
-                Calendar calendar = Calendar.getInstance();
-                calendar.set(Calendar.YEAR,year);
-                calendar.set(Calendar.MONTH,month);
-                calendar.set(Calendar.DAY_OF_MONTH,dayOfMonth);
-                mViewModel.queryVideoByDate(calendar.getTime());
+                mCalendar.set(Calendar.YEAR,year);
+                mCalendar.set(Calendar.MONTH,month);
+                mCalendar.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+                mDateTv.setText(SimpleDateFormat.getDateInstance().format(mCalendar.getTime()));
+                mViewModel.queryVideoByDate(mCalendar.getTime());
             },mCalendar.get(Calendar.YEAR), mCalendar.get(Calendar.MONTH), mCalendar.get(Calendar.DAY_OF_MONTH));
             datePickerDialog.show();
         });
@@ -88,7 +90,8 @@ public class UAVPatrolActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
     }
 
-    private void initSettings(){
+    @Override
+    protected void initData() {
         mViewModel = ViewModelProviders.of(this).get(UAVPatrolViewModel.class);
         mViewModel.getObservableUAVVideoItemEntity().observe(this, uavVideoItemEntities -> {
             mAdapter.replaceData(uavVideoItemEntities);

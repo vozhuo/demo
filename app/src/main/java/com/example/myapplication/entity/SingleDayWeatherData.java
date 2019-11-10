@@ -1,5 +1,6 @@
 package com.example.myapplication.entity;
 
+import java.util.Date;
 import java.util.List;
 
 public class SingleDayWeatherData {
@@ -8,6 +9,7 @@ public class SingleDayWeatherData {
     private float minTemperature;
     private float avgTemperature;
     private int weatherType;
+    private Date date;
     private List<Float> hoursTemperatureList;
     private List<Float> hoursSensibleTemperatureList;
     private List<Integer> weatherTypeList;
@@ -66,5 +68,13 @@ public class SingleDayWeatherData {
 
     public void setWeatherTypeList(List<Integer> weatherTypeList) {
         this.weatherTypeList = weatherTypeList;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

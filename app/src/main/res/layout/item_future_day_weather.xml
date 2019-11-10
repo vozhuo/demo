@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    tools:background="@color/colorAccent">
+    <ImageView
+        android:id="@+id/item_future_day_weather_iv"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@mipmap/icon_weather_sunshine_128px"/>
+    <TextView
+        android:id="@+id/item_future_day_weather_date_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:gravity="center"
+        android:text="今天·"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"/>
+    <TextView
+        android:id="@+id/item_future_day_weather_type_tv"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        tools:text="多云转晴"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:maxLines="1" />
+    <TextView
+        android:id="@+id/item_future_day_weather_temperature_range_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="27°/15°"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"/>
+</LinearLayout>
