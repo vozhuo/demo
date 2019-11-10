@@ -13,6 +13,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.myapplication.R;
 import com.example.myapplication.ui.activity.DamSeepageActivity;
 import com.example.myapplication.ui.activity.DamStressActivity;
+import com.example.myapplication.ui.activity.ReservoirLevelActivity;
 import com.example.myapplication.ui.activity.UAVPatrolActivity;
 import com.example.myapplication.ui.activity.VideoSurveillanceActivity;
 import com.example.myapplication.ui.activity.WaterDiversionActivity;
@@ -70,6 +71,8 @@ public class DataFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.fragment_data_reservoir_level_cardview:{
+                Intent intent = new Intent(getContext(), ReservoirLevelActivity.class);
+                startActivity(intent);
                 break;
             }
 

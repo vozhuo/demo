@@ -88,4 +88,9 @@
     <string name="activity_water_weather_hydrology_graph_inflow_capacity_text">来水量</string>
     <string name="activity_water_weather_hydrology_graph_useWater_capacity_text">用水量</string>
     <string name="activity_water_weather_hydrology_graph_amountOfWater_capacity_text">泄洪量</string>
+
+    <!-- 水库水位 -->
+    <string name="activity_reservoir_level_title">监测-水库水位</string>
+    <string name="activity_reservoir_level_text">水位</string>
+    <string name="activity_reservoir_level_graph_text">水位-曲线图</string>
 </resources>

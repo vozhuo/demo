@@ -6,9 +6,12 @@ import android.util.Log;
 import com.example.myapplication.R;
 import com.example.myapplication.entity.FutureHourWeatherEntity;
 import com.example.myapplication.entity.SingleDayHydrologyData;
+import com.example.myapplication.entity.SingleDayReservoirLevelEntity;
 import com.example.myapplication.entity.SingleDayWeatherData;
+import com.example.myapplication.entity.SingleHourReservoirLevelEntity;
 import com.example.myapplication.entity.UAVVideoItemEntity;
 import com.example.myapplication.entity.WaterWeatherEntity;
+import com.example.myapplication.event.ReservoirLevelEvent;
 import com.example.myapplication.event.UAVPatrolVideoEvent;
 import com.example.myapplication.event.WaterWeatherEvent;
 import com.example.myapplication.util.WeatherUtils;
@@ -41,6 +44,10 @@ public class MonitorDataModel{
 
     public void queryWaterWeatherData(){
         EventBus.getDefault().post(new WaterWeatherEvent(generateWaterWeatherData()));
+    }
+
+    public void queryReservoirLevelData(){
+        EventBus.getDefault().post(new ReservoirLevelEvent(generateReservoirLevelData()));
     }
 
     public void queryUAVVideobyDate(Date queryDate){
@@ -96,6 +103,24 @@ public class MonitorDataModel{
         List<UAVVideoItemEntity> list = new ArrayList<>();
         list.add(entity1);
         return list;
+    }
+
+    private List<SingleDayReservoirLevelEntity> generateReservoirLevelData(){
+        List<SingleDayReservoirLevelEntity> data = new ArrayList<>();
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY,0);
+        calendar.set(Calendar.MINUTE,0);
+        calendar.set(Calendar.SECOND,0);
+        calendar.set(Calendar.MILLISECOND,0);       //把时间设置为今天的00:00:00:000
+
+        int duration = 365;                           //过去<duration>天的数据
+        for (int i = 0;i < duration;i++){
+            data.add(simulateOneDayReservoirLevel(calendar.getTime()));
+            calendar.add(Calendar.DAY_OF_MONTH,-1);
+        }
+
+        return data;
     }
 
     private WaterWeatherEntity generateWaterWeatherData(){
@@ -179,5 +204,33 @@ public class MonitorDataModel{
         int temperature = random.nextInt(maxTemp - minTemp) + minTemp;
         int weatherType = random.nextInt(5);
         return new FutureHourWeatherEntity(temperature,weatherType,date);
+    }
+
+    private SingleDayReservoirLevelEntity simulateOneDayReservoirLevel(Date date){
+        Random random = new Random();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+
+        SingleDayReservoirLevelEntity entity = new SingleDayReservoirLevelEntity();
+        List<SingleHourReservoirLevelEntity> hourReservoirLevelList = new ArrayList<>();
+
+        int maxLevel = 600;
+        int minLevel = 400;
+        int totalLevel = 0;
+
+        //每个4小时测量一次水位，因此一天有6个水位的数据
+        for (int i = 0;i < 6;i++){
+            SingleHourReservoirLevelEntity hourEntity = new SingleHourReservoirLevelEntity();
+            hourEntity.setDate(calendar.getTime());
+            hourEntity.setReservoirLevel(random.nextInt(maxLevel - minLevel) + minLevel + random.nextFloat());
+            hourReservoirLevelList.add(hourEntity);
+            calendar.add(Calendar.HOUR_OF_DAY,-4);
+            totalLevel += hourEntity.getReservoirLevel();
+        }
+
+        entity.setHourReservoirLevelList(hourReservoirLevelList);
+        entity.setAverageReservoirLevel(totalLevel / 6);
+        entity.setDate(date);
+        return entity;
     }
 }

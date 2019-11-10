@@ -35,5 +35,10 @@
     <color name="activity_water_weather_hydrology_graph_rainfall_capacity_color">#3076B6</color>
     <color name="activity_water_weather_hydrology_graph_evaporation_capacity_color">#FFC002</color>
 
+    <!-- 监测-水库水位相关颜色 -->
+    <color name="activity_reservoir_level_main_background">#C9DAEE</color>
+    <color name="activity_reservoir_level_item_background">#9DBFDD</color>
+    <color name="activity_reservoir_level_graph_line_color">#214F7A</color>
+
     <color name="common_sub_header_light_blue">#4D2196F3</color>
 </resources>

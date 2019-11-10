@@ -13,6 +13,7 @@ public class WeatherUtils {
 
     private static SimpleDateFormat sDayOfWeekFormatter = new SimpleDateFormat("E·");
     private static SimpleDateFormat sHourOfDayFormatter = new SimpleDateFormat("HH:00");
+    private static SimpleDateFormat sCompleteDateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
     public static String formatTemperature(float temperature){
         return ((int)temperature) + "°";
@@ -24,6 +25,10 @@ public class WeatherUtils {
 
     public static String formatHour(Date date){
         return sHourOfDayFormatter.format(date);
+    }
+
+    public static String formatCompleteDate(Date date){
+        return sCompleteDateFormatter.format(date);
     }
 
     public static String formatDayOfWeek(Date date){

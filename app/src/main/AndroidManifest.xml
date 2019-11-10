@@ -63,6 +63,7 @@
         <activity android:name=".ui.activity.WaterQualityActivity"/>
         <activity android:name=".ui.activity.WaterWeatherActivity"
             android:label="@string/activity_water_weather_title"/>
+        <activity android:name=".ui.activity.ReservoirLevelActivity" />
     </application>
 
 </manifest>

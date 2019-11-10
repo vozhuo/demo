@@ -10,17 +10,28 @@ import java.util.Calendar;
 public class DateXValueFormatter extends ValueFormatter {
 
     private SimpleDateFormat mFormatter;
+    private boolean mIsReverse;
+
+    public DateXValueFormatter(boolean reverse){
+        mFormatter = new SimpleDateFormat("MM-dd");
+        mIsReverse = reverse;
+    }
 
     @SuppressLint("SimpleDateFormat")
     public DateXValueFormatter() {
-        mFormatter = new SimpleDateFormat("MM-dd");
+        this(false);
     }
 
     @Override
     public String getFormattedValue(float value) {
         int index = (int) value;
         Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.DAY_OF_MONTH,index);
+
+        if (!mIsReverse) {
+            calendar.add(Calendar.DAY_OF_MONTH, index);
+        }else {
+            calendar.add(Calendar.DAY_OF_MONTH, -index);
+        }
         return mFormatter.format(calendar.getTime());
     }
 
