@@ -58,6 +58,9 @@
     <string name="fragment_data_video_surveillance_text">视频监控</string>
     <string name="fragment_data_uav_text">无人机</string>
     <string name="fragment_data_water_quality_text">水库水质</string>
+    <string name="fragment_data_surface_deformation">表面形变</string>
+    <string name="fragment_data_internal_deformation">内部形变</string>
+
 
     <!-- 监测——视频监控Activity 相关字符串 -->
     <string name="activity_video_surveillance_title_text">监测-视频监控</string>
@@ -100,4 +103,12 @@
     <string name="activity_reservoir_level_graph_week_title_text">7天水库水位变化(m)</string>
     <string name="activity_reservoir_level_graph_month_title_text">30天水库水位变化(m)</string>
     <string name="activity_reservoir_level_graph_year_title_text">12个月水库水位变化(m)</string>
+
+    <!-- 大坝变形 -->
+    <string name="activity_dam_deformation_surface_title_text">监测-大坝表面变形</string>
+    <string name="activity_dam_deformation_internel_title_text">监测-大坝内部变形</string>
+    <string name="activity_dam_deformation_horizontal_distribute_button_text">水平位移分布图</string>
+    <string name="activity_dam_deformation_vertial_distribute_button_title_text">垂直位移分布图</string>
+    <string name="activity_dam_deformation_surface_subtitle_text">大坝表面变形监测点布置图</string>
+    <string name="activity_dam_deformation_internel_subtitle_text">大坝内部变形检测点布置图</string>
 </resources>

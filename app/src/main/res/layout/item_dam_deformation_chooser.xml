@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:paddingTop="25dp"
+    android:paddingBottom="25dp"
+    android:background="@drawable/drawable_dam_deformation_chooser_background">
+
+    <Button
+        android:id="@+id/item_dam_deformation_chooser_surface"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:text="@string/fragment_data_surface_deformation"
+        android:textSize="18sp"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/drawable_button_circle_blue_selector"/>
+
+    <Button
+        android:id="@+id/item_dam_deformation_chooser_internel"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/fragment_data_internal_deformation"
+        android:textSize="18sp"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/drawable_button_circle_blue_selector"/>
+</LinearLayout>

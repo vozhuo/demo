@@ -64,6 +64,8 @@
         <activity android:name=".ui.activity.WaterWeatherActivity"
             android:label="@string/activity_water_weather_title"/>
         <activity android:name=".ui.activity.ReservoirLevelActivity" />
+        <activity android:name=".ui.activity.DamDeformationActivity" />
+        <activity android:name=".ui.activity.DamMonitorGraphActivity" />
     </application>
 
 </manifest>

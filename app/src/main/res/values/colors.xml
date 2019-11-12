@@ -43,5 +43,9 @@
     <color name="activity_reservoir_level_graph_line_color">#214F7A</color>
     <color name="activity_reservoir_level_graph_fill_color">#7EAED8</color>
 
+    <!-- 监测-大坝变形 -->
+    <color name="item_dam_deformation_chooser_background">#C2DAEF</color>
+
+
     <color name="common_sub_header_light_blue">#4D2196F3</color>
 </resources>

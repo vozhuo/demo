@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.fragment;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import androidx.fragment.app.Fragment;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.myapplication.R;
+import com.example.myapplication.ui.activity.DamDeformationActivity;
 import com.example.myapplication.ui.activity.DamSeepageActivity;
 import com.example.myapplication.ui.activity.DamStressActivity;
 import com.example.myapplication.ui.activity.ReservoirLevelActivity;
@@ -35,7 +37,10 @@ public class DataFragment extends Fragment implements View.OnClickListener {
     private MaterialCardView mUAVCard;              //无人机
     private MaterialCardView mWaterQualityCard;     //水库水质
 
+    private AlertDialog mAlertDialog;
+
     public DataFragment() {
+
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -65,6 +70,28 @@ public class DataFragment extends Fragment implements View.OnClickListener {
         mVideoSurveillanceCard.setOnClickListener(this);
         mUAVCard.setOnClickListener(this);
         mWaterQualityCard.setOnClickListener(this);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        View contentView = getLayoutInflater().inflate(R.layout.item_dam_deformation_chooser,null,false);
+        View surfaceBtn = contentView.findViewById(R.id.item_dam_deformation_chooser_surface);
+        View internelBtn = contentView.findViewById(R.id.item_dam_deformation_chooser_internel);
+
+        surfaceBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), DamDeformationActivity.class);
+            intent.putExtra("DeformationType",DamDeformationActivity.TYPE_SURFACE_DEFORMATION);
+            startActivity(intent);
+            mAlertDialog.dismiss();
+        });
+
+        internelBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), DamDeformationActivity.class);
+            intent.putExtra("DeformationType",DamDeformationActivity.TYPE_INTERNEL_DEFORMATION);
+            startActivity(intent);
+            mAlertDialog.dismiss();
+        });
+
+        builder.setView(contentView);
+        mAlertDialog = builder.create();
     }
 
     @Override
@@ -77,6 +104,7 @@ public class DataFragment extends Fragment implements View.OnClickListener {
             }
 
             case R.id.fragment_data_dam_deformation_cardview:{
+                mAlertDialog.show();
                 break;
             }
 
@@ -123,4 +151,5 @@ public class DataFragment extends Fragment implements View.OnClickListener {
             }
         }
     }
+
 }
