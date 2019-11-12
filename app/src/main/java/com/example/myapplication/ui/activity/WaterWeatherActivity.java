@@ -2,6 +2,7 @@ package com.example.myapplication.ui.activity;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -119,18 +120,23 @@ public class WaterWeatherActivity extends BaseActivity {
             monthMaxTempDataSet.setColor(getResources().getColor(R.color.activity_water_weather_weather_graph_max_temperature_color));
             monthMaxTempDataSet.setDrawValues(false);
             monthMaxTempDataSet.setDrawCircles(false);
+            //monthMaxTempDataSet.setDrawFilled(true);
+//            monthMaxTempDataSet.setFillColor(getResources().getColor(R.color.activity_water_weather_hydrology_graph_first_fill_color));
 
             LineDataSet monthMinTempDataSet = new LineDataSet(monthMinTempEntries,"最低气温");
             monthMinTempDataSet.setColor(getResources().getColor(R.color.activity_water_weather_weather_graph_min_temperature_color));
             monthMinTempDataSet.setDrawValues(false);
             monthMinTempDataSet.setDrawCircles(false);
+           // monthMinTempDataSet.setDrawFilled(true);
+//            monthMinTempDataSet.setFillColor(getResources().getColor(R.color.activity_water_weather_hydrology_graph_second_fill_color));
+//            monthMinTempDataSet.setFillAlpha(85);
 
             LineDataSet monthAvgTempDataSet = new LineDataSet(monthAvgTempEntries,"平均气温");
             monthAvgTempDataSet.setColor(getResources().getColor(R.color.activity_water_weather_weather_graph_avg_temperature_color));
             monthAvgTempDataSet.setDrawValues(false);
             monthAvgTempDataSet.setDrawCircles(false);
 
-            LineData weatherLineData = new LineData(monthMaxTempDataSet,monthMinTempDataSet,monthAvgTempDataSet);
+            LineData weatherLineData = new LineData(monthMinTempDataSet,monthMaxTempDataSet,monthAvgTempDataSet);
             mTemperatureChart1.setData(weatherLineData);
             mTemperatureChart2.setData(weatherLineData);
 

@@ -45,18 +45,34 @@
                 android:text="@string/activity_water_weather_hydrology_graph_evaporation_capacity_text"
                 android:textColor="#FFFFFF"/>
         </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:text="@string/activity_water_weather_week_hydrology_graph_title_text"
+            android:textSize="12sp"
+            android:textColor="#5F5F5F"/>
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/activity_water_weather_main_hydrology_chart1"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:layout_marginTop="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:text="@string/activity_water_weather_month_hydrology_graph_title_text"
+            android:textSize="12sp"
+            android:textColor="#5F5F5F"/>
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/activity_water_weather_main_hydrology_chart2"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:layout_marginTop="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"/>
     </LinearLayout>

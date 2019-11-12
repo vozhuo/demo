@@ -78,6 +78,10 @@
     <string name="activity_water_weather_title">监测-水文气象</string>
     <string name="activity_water_weather_weather_text">气象</string>
     <string name="activity_water_weather_weather_graph_text">气象-曲线图</string>
+    <string name="activity_water_weather_week_weather_graph_title_text">未来7天最高、最低气温变化(°)</string>
+    <string name="activity_water_weather_month_weather_graph_title_text">未来30天最高、最低气温变化(°)</string>
+    <string name="activity_water_weather_week_hydrology_graph_title_text">未来7天降雨量、蒸发量变化(mm)</string>
+    <string name="activity_water_weather_month_hydrology_graph_title_text">未来30天降雨量、蒸发量变化(mm)</string>
     <string name="activity_water_weather_hydrology_text">水文</string>
     <string name="activity_water_weather_hydrology_graph_text">水文-曲线图</string>
     <string name="activity_water_weather_weather_graph_max_temperature_text">最高气温</string>
@@ -93,4 +97,7 @@
     <string name="activity_reservoir_level_title">监测-水库水位</string>
     <string name="activity_reservoir_level_text">水位</string>
     <string name="activity_reservoir_level_graph_text">水位-曲线图</string>
+    <string name="activity_reservoir_level_graph_week_title_text">7天水库水位变化(m)</string>
+    <string name="activity_reservoir_level_graph_month_title_text">30天水库水位变化(m)</string>
+    <string name="activity_reservoir_level_graph_year_title_text">12个月水库水位变化(m)</string>
 </resources>

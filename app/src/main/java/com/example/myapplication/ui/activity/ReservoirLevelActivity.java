@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.ReservoirLevelAdapter;
 import com.example.myapplication.util.ScreenUtils;
-import com.example.myapplication.util.XValueFormatter;
+import com.example.myapplication.util.ReverseDateXValueFormatter;
 import com.example.myapplication.viewmodel.ReservoirLevelViewModel;
 import com.example.myapplication.widget.SpaceItemDecoration;
 import com.github.mikephil.charting.charts.LineChart;
@@ -99,24 +99,29 @@ public class ReservoirLevelActivity extends BaseActivity{
 
             int lastIndex = singleDayReservoirLevelList.size() - 1;
             List<Entry> weekEntries = new ArrayList<>();
-            for (int i = lastIndex,j = 0;i >= lastIndex - 7;i--,j++){
+            for (int i = lastIndex,j = 0;i >= lastIndex - 6;i--,j++){
                 weekEntries.add(new Entry(j,singleDayReservoirLevelList.get(i).getAverageReservoirLevel()));
             }
+
             LineDataSet weekLineDataSet = new LineDataSet(weekEntries,"一周水位变化");
             weekLineDataSet.setColor(getResources().getColor(R.color.activity_reservoir_level_graph_line_color));
             weekLineDataSet.setDrawValues(false);
             weekLineDataSet.setDrawCircles(false);
+            weekLineDataSet.setDrawFilled(true);
+            weekLineDataSet.setFillColor(getResources().getColor(R.color.activity_reservoir_level_graph_fill_color));
             LineData weekLineData = new LineData(weekLineDataSet);
             mWeekLineChart.setData(weekLineData);
 
             List<Entry> monthEntries = new ArrayList<>();
-            for (int i = lastIndex,j = 0;i >= lastIndex - 30;i--,j++){
+            for (int i = lastIndex,j = 0;i >= lastIndex - 29;i--,j++){
                 monthEntries.add(new Entry(j,singleDayReservoirLevelList.get(i).getAverageReservoirLevel()));
             }
             LineDataSet monthLineDataSet = new LineDataSet(monthEntries,"30天水位变化");
             monthLineDataSet.setColor(getResources().getColor(R.color.activity_reservoir_level_graph_line_color));
             monthLineDataSet.setDrawValues(false);
             monthLineDataSet.setDrawCircles(false);
+            monthLineDataSet.setDrawFilled(true);
+            monthLineDataSet.setFillColor(getResources().getColor(R.color.activity_reservoir_level_graph_fill_color));
             LineData monthLineData = new LineData(monthLineDataSet);
             mMonthLineChart.setData(monthLineData);
 
@@ -128,6 +133,8 @@ public class ReservoirLevelActivity extends BaseActivity{
             yearLineDataSet.setColor(getResources().getColor(R.color.activity_reservoir_level_graph_line_color));
             yearLineDataSet.setDrawValues(false);
             yearLineDataSet.setDrawCircles(false);
+            yearLineDataSet.setDrawFilled(true);
+            yearLineDataSet.setFillColor(getResources().getColor(R.color.activity_reservoir_level_graph_fill_color));
             LineData yearLineData = new LineData(yearLineDataSet);
             mYearLineChart.setData(yearLineData);
         });
@@ -135,28 +142,29 @@ public class ReservoirLevelActivity extends BaseActivity{
     }
 
     private void initLineChart(){
-        mWeekValueFormatter = new XValueFormatter(XValueFormatter.DATE_TYPE_WEEK,new Date());
+        mWeekValueFormatter = new ReverseDateXValueFormatter(ReverseDateXValueFormatter.DATE_TYPE_WEEK,new Date());
         mWeekLineChart = findViewById(R.id.activity_reservoir_level_main_week_linechart);
         mWeekLineChart.setTouchEnabled(false);                              //禁止用户对图表进行操作
         mWeekLineChart.getAxisRight().setEnabled(false);                    //禁用右侧Y轴
         mWeekLineChart.getAxisLeft().setAxisMinimum(400f);                    //从400m开始
-        mWeekLineChart.getAxisLeft().setAxisMaximum(600f);                   //最大刻度是600m
+        mWeekLineChart.getAxisLeft().setAxisMaximum(500f);                   //最大刻度是600m
         mWeekLineChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);  //设置X轴显示位置
         mWeekLineChart.getXAxis().setDrawAxisLine(false);
         mWeekLineChart.getXAxis().setDrawGridLines(false);                  //不绘制网格
         mWeekLineChart.getLegend().setEnabled(false);                       //禁用图例
         mWeekLineChart.getDescription().setEnabled(false);                  //禁用X轴描述
-//        mWeekLineChart.getXAxis().setAxisMinimum(0f);
-//        mWeekLineChart.getXAxis().setAxisMaximum(6f);
-        //mWeekLineChart.getXAxis().setValueFormatter(mWeekValueFormatter);
-        mWeekLineChart.getXAxis().setAvoidFirstLastClipping(true);
+        mWeekLineChart.getXAxis().setAxisMinimum(0f);
+        mWeekLineChart.getXAxis().setAxisMaximum(6f);
+        mWeekLineChart.getXAxis().setValueFormatter(mWeekValueFormatter);
 
-        mMonthValueFormatter = new XValueFormatter(XValueFormatter.DATE_TYPE_MONTH,new Date());
+        //mWeekLineChart.getXAxis().setAvoidFirstLastClipping(true);
+
+        mMonthValueFormatter = new ReverseDateXValueFormatter(ReverseDateXValueFormatter.DATE_TYPE_MONTH,new Date());
         mMonthLineChart = findViewById(R.id.activity_reservoir_level_main_month_linechart);
         mMonthLineChart.setTouchEnabled(false);                              //禁止用户对图表进行操作
         mMonthLineChart.getAxisRight().setEnabled(false);                    //禁用右侧Y轴
         mMonthLineChart.getAxisLeft().setAxisMinimum(400f);                    //从400m开始
-        mMonthLineChart.getAxisLeft().setAxisMaximum(600f);                   //最大刻度是600m
+        mMonthLineChart.getAxisLeft().setAxisMaximum(500f);                   //最大刻度是600m
         mMonthLineChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);  //设置X轴显示位置
         mMonthLineChart.getXAxis().setDrawAxisLine(false);
         mMonthLineChart.getXAxis().setDrawGridLines(false);                  //不绘制网格
@@ -164,23 +172,23 @@ public class ReservoirLevelActivity extends BaseActivity{
         mMonthLineChart.getDescription().setEnabled(false);                  //禁用X轴描述
 //        mMonthLineChart.getXAxis().setAxisMinimum(0f);
 //        mMonthLineChart.getXAxis().setAxisMaximum(30f);
-        //mMonthLineChart.getXAxis().setValueFormatter(mMonthValueFormatter);
+        mMonthLineChart.getXAxis().setValueFormatter(mMonthValueFormatter);
         mMonthLineChart.getXAxis().setAvoidFirstLastClipping(true);
 
-        mYearValueFormatter = new XValueFormatter(XValueFormatter.DATE_TYPE_YEAR,new Date());
+        mYearValueFormatter = new ReverseDateXValueFormatter(ReverseDateXValueFormatter.DATE_TYPE_YEAR,new Date());
         mYearLineChart = findViewById(R.id.activity_reservoir_level_main_year_linechart);
         mYearLineChart.setTouchEnabled(false);                              //禁止用户对图表进行操作
         mYearLineChart.getAxisRight().setEnabled(false);                    //禁用右侧Y轴
         mYearLineChart.getAxisLeft().setAxisMinimum(400f);                    //从400m开始
-        mYearLineChart.getAxisLeft().setAxisMaximum(600f);                   //最大刻度是600m
+        mYearLineChart.getAxisLeft().setAxisMaximum(500f);                   //最大刻度是600m
         mYearLineChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);  //设置X轴显示位置
         mYearLineChart.getXAxis().setDrawAxisLine(false);
         mYearLineChart.getXAxis().setDrawGridLines(false);                  //不绘制网格
         mYearLineChart.getLegend().setEnabled(false);                       //禁用图例
         mYearLineChart.getDescription().setEnabled(false);                  //禁用X轴描述
-        mYearLineChart.getXAxis().setAxisMinimum(0f);
-        mYearLineChart.getXAxis().setAxisMaximum(365f);
-        //mYearLineChart.getXAxis().setValueFormatter(mYearValueFormatter);
+        //mYearLineChart.getXAxis().setAxisMinimum(0f);
+        //mYearLineChart.getXAxis().setAxisMaximum(365f);
+        mYearLineChart.getXAxis().setValueFormatter(mYearValueFormatter);
         mYearLineChart.getXAxis().setAvoidFirstLastClipping(true);
     }
 }

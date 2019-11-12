@@ -214,7 +214,7 @@ public class MonitorDataModel{
         SingleDayReservoirLevelEntity entity = new SingleDayReservoirLevelEntity();
         List<SingleHourReservoirLevelEntity> hourReservoirLevelList = new ArrayList<>();
 
-        int maxLevel = 600;
+        int maxLevel = 500;
         int minLevel = 400;
         int totalLevel = 0;
 
