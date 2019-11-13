@@ -29,7 +29,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
-public class AppMainActivity extends AppCompatActivity{
+public class AppMainActivity extends BaseActivity{
 
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
@@ -45,17 +45,26 @@ public class AppMainActivity extends AppCompatActivity{
     private List<Fragment> mFragmentList;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_app_main);
-        initViews();
-        initFragments();
+    protected int getContentViewId() {
+        return R.layout.activity_app_main;
     }
 
-    private void initViews(){
+    @Override
+    protected boolean useSupportedToolbar() {
+        return false;
+    }
+
+    @Override
+    protected void initView(@Nullable Bundle savedInstanceState) {
         mToolbar = findViewById(R.id.activity_main_toolbar);
         mTabLayout = findViewById(R.id.activity_main_tablayout);
         mViewPager = findViewById(R.id.activity_main_viewpager);
+        initFragments();
+    }
+
+    @Override
+    protected void initData() {
+
     }
 
     private void initFragments(){
@@ -81,26 +90,5 @@ public class AppMainActivity extends AppCompatActivity{
         mViewPager.setAdapter(adapter);
 
         BottomNavigationController.use(mTabLayout).toolbar(mToolbar).associateWith(mViewPager);
-    }
-
-    public static class MyFragment extends Fragment{
-
-        String name;
-
-        public MyFragment() {
-        }
-
-        public MyFragment(String name) {
-            this.name = name;
-        }
-
-        @Nullable
-        @Override
-        public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-            View view = inflater.inflate(R.layout.fragment_test_main,container,false);
-            TextView tv = view.findViewById(R.id.fragment_test_main_tv);
-            tv.setText("Fragment:" + name);
-            return view;
-        }
     }
 }

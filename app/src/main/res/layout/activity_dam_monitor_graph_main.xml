@@ -1,10 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/activity_reservoir_level_main_background">
 
-    <include layout="@layout/common_date_picker"/>
-    <include layout="@layout/common_sub_header_left" />
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include layout="@layout/common_date_picker"/>
+            <include layout="@layout/common_sub_header_left" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:cardBackgroundColor="@color/activity_water_weather_item_background"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginStart="20dp"
+                        android:text="水平位移"
+                        android:textSize="20sp"
+                        android:textColor="#FFFFFF"
+                        tools:ignore="HardcodedText" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_gravity="center"
+                        android:text="@string/activity_dam_monitor_graph_week_horizontal_offset_text"
+                        android:textSize="12sp"
+                        android:textColor="#5F5F5F"/>
+                    <com.github.mikephil.charting.charts.LineChart
+                        android:id="@+id/activity_dam_monitor_graph_week_horizontal_offset_chart"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_gravity="center"
+                        android:text="@string/activity_dam_monitor_graph_month_horizontal_offset_text"
+                        android:textSize="12sp"
+                        android:textColor="#5F5F5F"/>
+                    <com.github.mikephil.charting.charts.LineChart
+                        android:id="@+id/activity_dam_monitor_graph_month_horizontal_offset_chart"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_gravity="center"
+                        android:text="@string/activity_dam_monitor_graph_year_horizontal_offset_text"
+                        android:textSize="12sp"
+                        android:textColor="#5F5F5F"/>
+                    <com.github.mikephil.charting.charts.LineChart
+                        android:id="@+id/activity_dam_monitor_graph_year_horizontal_offset_chart"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginStart="20dp"
+                        android:text="垂直位移"
+                        android:textSize="20sp"
+                        android:textColor="#FFFFFF"
+                        tools:ignore="HardcodedText" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_gravity="center"
+                        android:text="@string/activity_dam_monitor_graph_week_vertical_offset_text"
+                        android:textSize="12sp"
+                        android:textColor="#5F5F5F"/>
+                    <com.github.mikephil.charting.charts.LineChart
+                        android:id="@+id/activity_dam_monitor_graph_week_vertical_offset_chart"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_gravity="center"
+                        android:text="@string/activity_dam_monitor_graph_month_vertical_offset_text"
+                        android:textSize="12sp"
+                        android:textColor="#5F5F5F"/>
+                    <com.github.mikephil.charting.charts.LineChart
+                        android:id="@+id/activity_dam_monitor_graph_month_vertical_offset_chart"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_gravity="center"
+                        android:text="@string/activity_dam_monitor_graph_year_vertical_offset_text"
+                        android:textSize="12sp"
+                        android:textColor="#5F5F5F"/>
+                    <com.github.mikephil.charting.charts.LineChart
+                        android:id="@+id/activity_dam_monitor_graph_year_vertical_offset_chart"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
 </LinearLayout>

@@ -16,9 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends BaseActivity implements View.OnClickListener {
 
-    private static final String TAG = "LoginActivity";
     private EditText mUsernameEt;
     private EditText mPasswordEt;
     private Button mLoginButton;
@@ -30,14 +29,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private LoginViewModel mViewModel;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_main);
-        initViews();
-        subscribeUI();
+    protected int getContentViewId() {
+        return R.layout.activity_login_main;
     }
 
-    private void initViews(){
+    @Override
+    protected boolean useSupportedToolbar() {
+        return false;
+    }
+
+    @Override
+    protected void initView(@Nullable Bundle savedInstanceState) {
         mRootView = findViewById(R.id.activity_login_main_root_container);
         mUsernameEt = findViewById(R.id.activity_login_main_username_et);
         mPasswordEt = findViewById(R.id.activity_login_main_password_et);
@@ -53,14 +55,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     @Override
+    protected void initData() {
+        subscribeUI();
+    }
+
+    @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.activity_login_main_login_btn:{
-                //----------Quick entrance to MainActivity---------
-                Intent test = new Intent(LoginActivity.this,AppMainActivity.class);
-                startActivity(test);
-                //doLogin();
-                //--------------------------------------------------
+                doLogin();
                 break;
             }
 
@@ -77,8 +80,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
 
             case R.id.activity_login_main_test_btn:{
-                Intent intent3 = new Intent(LoginActivity.this, TestActivity.class);
-                startActivity(intent3);
+                //----------Quick entrance to MainActivity---------
+                Intent test = new Intent(LoginActivity.this,AppMainActivity.class);
+                startActivity(test);
+                finish();
+                //--------------------------------------------------
                 break;
             }
         }
@@ -93,9 +99,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     //login successfully,go to the MainActivity
                     Intent intent = new Intent(LoginActivity.this, AppMainActivity.class);
                     startActivity(intent);
+                    finish();
 
                     //enable login button
-                    mLoginButton.setEnabled(true);
+                    //mLoginButton.setEnabled(true);
                 }else{
                     //login failure,show some error messages
                     Toast.makeText(LoginActivity.this,"账号或者密码错误，请重试！",Toast.LENGTH_SHORT).show();

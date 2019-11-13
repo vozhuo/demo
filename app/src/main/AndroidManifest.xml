@@ -66,6 +66,7 @@
         <activity android:name=".ui.activity.ReservoirLevelActivity" />
         <activity android:name=".ui.activity.DamDeformationActivity" />
         <activity android:name=".ui.activity.DamMonitorGraphActivity" />
+        <activity android:name=".ui.activity.DamOffsetDistributionActivity" />
     </application>
 
 </manifest>

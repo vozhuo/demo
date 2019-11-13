@@ -111,4 +111,14 @@
     <string name="activity_dam_deformation_vertial_distribute_button_title_text">垂直位移分布图</string>
     <string name="activity_dam_deformation_surface_subtitle_text">大坝表面变形监测点布置图</string>
     <string name="activity_dam_deformation_internel_subtitle_text">大坝内部变形检测点布置图</string>
+    <string name="activity_dam_monitor_graph_week_horizontal_offset_text">7天水平位移变化(mm)</string>
+    <string name="activity_dam_monitor_graph_month_horizontal_offset_text">30天水平位移变化(mm)</string>
+    <string name="activity_dam_monitor_graph_year_horizontal_offset_text">12个月水平位移变化(mm)</string>
+    <string name="activity_dam_monitor_graph_week_vertical_offset_text">7天垂直位移变化(mm)</string>
+    <string name="activity_dam_monitor_graph_month_vertical_offset_text">30天垂直位移变化(mm)</string>
+    <string name="activity_dam_monitor_graph_year_vertical_offset_text">12个月垂直位移变化(mm)</string>
+    <string name="activity_dam_offset_distribution_surface_horizontal_subtitle_text">大坝表面水平位移空间分布图</string>
+    <string name="activity_dam_offset_distribution_surface_vertical_subtitle_text">大坝表面垂直位移空间分布图</string>
+    <string name="activity_dam_offset_distribution_internel_horizontal_subtitle_text">大坝内部水平位移空间分布图</string>
+    <string name="activity_dam_offset_distribution_internel_vertical_subtitle_text">大坝内部垂直位移空间分布图</string>
 </resources>

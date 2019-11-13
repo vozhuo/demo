@@ -19,7 +19,7 @@ import java.util.List;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatSpinner;
 
-public class DamDeformationActivity extends BaseActivity {
+public class DamDeformationActivity extends BaseActivity implements View.OnClickListener {
 
     private TextView mSubTitleTv;
     private Button mHorizontalBtn;
@@ -38,6 +38,8 @@ public class DamDeformationActivity extends BaseActivity {
 
     public static final int TYPE_SURFACE_DEFORMATION = 1;
     public static final int TYPE_INTERNEL_DEFORMATION = 2;
+    public static final int ORIENTATION_HORIZONTAL = 3;
+    public static final int ORIENTATION_VERTICAL = 4;
     @Override
     protected int getContentViewId() {
         return R.layout.activity_dam_deformation_main;
@@ -58,6 +60,8 @@ public class DamDeformationActivity extends BaseActivity {
         mSpinner = findViewById(R.id.activity_dam_deformation_main_spinner);
         mImageView = findViewById(R.id.activity_dam_deformation_main_map_iv);
 
+        mHorizontalBtn.setOnClickListener(this);
+        mVertivalBtn.setOnClickListener(this);
         if (mType == TYPE_SURFACE_DEFORMATION) {
             mSubTitleTv.setText(R.string.activity_dam_deformation_surface_subtitle_text);
             getToolbar().setTitle(R.string.activity_dam_deformation_surface_title_text);
@@ -94,5 +98,28 @@ public class DamDeformationActivity extends BaseActivity {
     @Override
     protected void initData() {
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.activity_dam_deformation_main_horizontal_btn:{
+                Intent intent = new Intent(this,DamOffsetDistributionActivity.class);
+                intent.putExtra("DeformationType",mType);
+                intent.putExtra("DeformationOrientation",ORIENTATION_HORIZONTAL);
+                startActivity(intent);
+                break;
+            }
+
+            case R.id.activity_dam_deformation_main_vertical_btn:
+            default:{
+                Intent intent = new Intent(this,DamOffsetDistributionActivity.class);
+                intent.putExtra("DeformationType",mType);
+                intent.putExtra("DeformationOrientation",ORIENTATION_VERTICAL);
+                startActivity(intent);
+                break;
+            }
+
+        }
     }
 }

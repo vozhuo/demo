@@ -1,6 +1,8 @@
 package com.example.myapplication.ui.activity;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -13,15 +15,15 @@ import com.example.myapplication.entity.RetrievePasswordReq;
 import com.example.myapplication.entity.RetrievePasswordResp;
 import com.example.myapplication.viewmodel.RetrievePasswordViewModel;
 
+import java.lang.ref.WeakReference;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-public class RetrievePasswordActivity extends AppCompatActivity implements View.OnClickListener {
+public class RetrievePasswordActivity extends BaseActivity implements View.OnClickListener {
 
-    private Toolbar mToolbar;
     private EditText mUsernameEt;
     private EditText mPhoneOrEmailEt;
     private EditText mCaptchaEt;
@@ -30,17 +32,32 @@ public class RetrievePasswordActivity extends AppCompatActivity implements View.
     private Button mGetCaptchaBtn;
     private Button mConfirmBtn;
     private RetrievePasswordViewModel mViewModel;
+    private int mCountDown = 60;    //发送验证码的倒计时 60s
+    private RetrievePasswordActivityHandler mHandler;
+    private static final int COUNT_DOWN_MESSAGE = 0x123;
+    private static final int ONE_SECOND = 1000;
+    @Override
+    protected int getContentViewId() {
+        return R.layout.activity_retrieve_password_main;
+    }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_retrieve_password_main);
+    protected boolean useSupportedToolbar() {
+        return true;
+    }
+
+    @Override
+    protected void initView(@Nullable Bundle savedInstanceState) {
         initViews();
+    }
+
+    @Override
+    protected void initData() {
         subscribeUI();
     }
 
     private void initViews(){
-        mToolbar = findViewById(R.id.activity_retrieve_password_main_toolbar);
+        mHandler = new RetrievePasswordActivityHandler(this);
         mUsernameEt = findViewById(R.id.activity_retrieve_password_main_username_et);
         mPhoneOrEmailEt = findViewById(R.id.activity_retrieve_password_main_phonenumber_et);
         mCaptchaEt = findViewById(R.id.activity_retrieve_password_main_captcha_et);
@@ -51,12 +68,7 @@ public class RetrievePasswordActivity extends AppCompatActivity implements View.
 
         mGetCaptchaBtn.setOnClickListener(this);
         mConfirmBtn.setOnClickListener(this);
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        getToolbar().setTitle("找回密码");
     }
 
     private void subscribeUI(){
@@ -81,7 +93,7 @@ public class RetrievePasswordActivity extends AppCompatActivity implements View.
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.activity_retrieve_password_main_get_captcha_button:{
-
+                startCountDown();
                 break;
             }
 
@@ -130,5 +142,50 @@ public class RetrievePasswordActivity extends AppCompatActivity implements View.
         RetrievePasswordReq req = new RetrievePasswordReq(mUsernameEt.getText().toString(),mPhoneOrEmailEt.getText().toString(),
                 mCaptchaEt.getText().toString(),mPasswordEt.getText().toString(),mConfirmPswEt.getText().toString());
         mViewModel.retrievePassword(req);
+    }
+
+    private void startCountDown(){
+        Toast.makeText(this,R.string.register_activity_sent_captcha,Toast.LENGTH_SHORT).show();
+
+        mGetCaptchaBtn.setEnabled(false);
+        mGetCaptchaBtn.setTextColor(getResources().getColor(R.color.activity_register_main_captcha_button_disable_color));
+        mGetCaptchaBtn.setText(mCountDown + "秒");
+        mHandler.sendEmptyMessageDelayed(COUNT_DOWN_MESSAGE,ONE_SECOND);
+    }
+
+    private void resetCountDown(){
+        mCountDown = 60;
+        mGetCaptchaBtn.setEnabled(true);
+        mGetCaptchaBtn.setTextColor(getResources().getColor(R.color.activity_register_main_captcha_button_normal_color));
+        mGetCaptchaBtn.setText(getResources().getText(R.string.activity_register_main_get_captcha_text));
+    }
+
+    static class RetrievePasswordActivityHandler extends Handler {
+
+        WeakReference<RetrievePasswordActivity> mActivity;
+
+        RetrievePasswordActivityHandler(RetrievePasswordActivity activity){
+            mActivity = new WeakReference<>(activity);
+        }
+
+        public RetrievePasswordActivity getActivity(){
+            return mActivity.get();
+        }
+
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            super.handleMessage(msg);
+            if (msg.what == COUNT_DOWN_MESSAGE){
+                if (getActivity() != null){
+                    if (getActivity().mCountDown > 0) {
+                        getActivity().mCountDown--;
+                        getActivity().mGetCaptchaBtn.setText(getActivity().mCountDown + "秒");
+                        sendEmptyMessageDelayed(COUNT_DOWN_MESSAGE, ONE_SECOND);
+                    }else {
+                        getActivity().resetCountDown();
+                    }
+                }
+            }
+        }
     }
 }

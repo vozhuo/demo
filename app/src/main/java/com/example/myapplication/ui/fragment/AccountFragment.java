@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.SettingAdapter;
+import com.example.myapplication.ui.activity.LoginActivity;
 
 import java.util.Arrays;
 
@@ -37,7 +39,9 @@ public class AccountFragment extends Fragment {
         Button btn_logout = root.findViewById(R.id.btn_logout);
         // 退出登录
         btn_logout.setOnClickListener(v -> {
-
+            Intent intent = new Intent(getContext(), LoginActivity.class);
+            startActivity(intent);
+            getActivity().finish();
         });
 
         return root;

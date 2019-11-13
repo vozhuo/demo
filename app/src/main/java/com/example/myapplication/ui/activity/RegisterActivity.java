@@ -24,11 +24,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
+public class RegisterActivity extends BaseActivity implements View.OnClickListener {
 
     private RegisterViewModel mViewModel;
 
-    private Toolbar mToolbar;
     private EditText mUsernameEt;
     private EditText mPhoneEt;
     private EditText mCaptchaEt;
@@ -43,20 +42,29 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private static final int COUNT_DOWN_MESSAGE = 0x123;
     private static final int ONE_SECOND = 1000;
 
-    private static final String TAG = "RegisterActivity";
+    @Override
+    protected int getContentViewId() {
+        return R.layout.activity_register_main;
+    }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register_main);
+    protected boolean useSupportedToolbar() {
+        return true;
+    }
+
+    @Override
+    protected void initView(@Nullable Bundle savedInstanceState) {
         initViews();
+    }
+
+    @Override
+    protected void initData() {
         subscribeUI();
     }
 
     private void initViews(){
         mHandler = new RegisterActivityHandler(this);
 
-        mToolbar = findViewById(R.id.activity_register_main_toolbar);
         mUsernameEt = findViewById(R.id.activity_register_main_username_et);
         mPhoneEt = findViewById(R.id.activity_register_main_phonenumber_et);
         mCaptchaEt = findViewById(R.id.activity_register_main_captcha_et);
@@ -66,12 +74,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         mGetCaptchaBtn = findViewById(R.id.activity_register_main_get_captcha_button);
         mRegisterBtn = findViewById(R.id.activity_register_main_register_button);
 
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        getToolbar().setTitle("注册");
         mGetCaptchaBtn.setOnClickListener(this);
         mRegisterBtn.setOnClickListener(this);
     }
