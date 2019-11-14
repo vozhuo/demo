@@ -21,9 +21,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class VideoSurveillanceActivity extends AppCompatActivity {
+public class VideoSurveillanceActivity extends BaseActivity {
 
-    private Toolbar mToolbar;
     private RecyclerView mRecyclerView;
     private List<VideoSurveillanceEntity> mDataList;
 
@@ -31,22 +30,31 @@ public class VideoSurveillanceActivity extends AppCompatActivity {
     private static final String TAG = "VideoActivity";
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_video_surveillance_main);
+    protected int getContentViewId() {
+        return R.layout.activity_video_surveillance_main;
+    }
+
+    @Override
+    protected boolean useSupportedToolbar() {
+        return true;
+    }
+
+    @Override
+    protected void initView(@Nullable Bundle savedInstanceState) {
         generateData();
         initViews();
     }
 
+    @Override
+    protected void initData() {
+
+    }
+
     @SuppressLint("LongLogTag")
     private void initViews(){
+        getToolbar().setTitle(R.string.activity_video_surveillance_title_text);
+
         mRecyclerView = findViewById(R.id.activity_video_surveillance_recyclerview);
-        mToolbar = findViewById(R.id.common_toolbar);
-
-        mToolbar.setTitle(R.string.activity_video_surveillance_title_text);
-        mToolbar.setNavigationIcon(R.mipmap.ic_arrow_back_white);
-        mToolbar.setNavigationOnClickListener(v -> {finish();});
-
         mAdapter = new VideoSurveillanceAdapter(mDataList);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.addOnItemTouchListener(new OnItemChildClickListener() {

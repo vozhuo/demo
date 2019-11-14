@@ -20,4 +20,13 @@ public class AppConst {
         public static final int RETRIEVE_PASSWORD_FAILURE_USERNAME_DONT_EXISTED = 1;
         public static final int RETRIEVE_PASSWORD_FAILURE_CAPTCHA_UNMATCHED = 2;
     }
+
+    /**
+     *  定义图表数据的数据类型，比如大坝渗流的曲线图、水库水质的曲线图
+     */
+    public final static class GraphDataType{
+        public static final int GRAPH_TYPE_DAM_SEEPAGE = 0x1001;
+        public static final int GRAPH_TYPE_WATER_DIVERSION = 0x1002;
+        public static final int GRAPH_TYPE_WATER_QUALITY = 0x1003;
+    }
 }

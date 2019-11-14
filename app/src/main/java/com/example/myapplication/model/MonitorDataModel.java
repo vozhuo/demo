@@ -1,10 +1,12 @@
 package com.example.myapplication.model;
 
 import android.annotation.SuppressLint;
-import android.util.Log;
+import android.graphics.Color;
 
 import com.example.myapplication.R;
+import com.example.myapplication.app.AppConst;
 import com.example.myapplication.entity.FutureHourWeatherEntity;
+import com.example.myapplication.entity.GraphDisplayItem;
 import com.example.myapplication.entity.SingleDayHydrologyData;
 import com.example.myapplication.entity.SingleDayReservoirLevelEntity;
 import com.example.myapplication.entity.SingleDayWeatherData;
@@ -14,12 +16,15 @@ import com.example.myapplication.entity.WaterWeatherEntity;
 import com.example.myapplication.event.ReservoirLevelEvent;
 import com.example.myapplication.event.UAVPatrolVideoEvent;
 import com.example.myapplication.event.WaterWeatherEvent;
-import com.example.myapplication.util.WeatherUtils;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
 
 import org.greenrobot.eventbus.EventBus;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -76,6 +81,23 @@ public class MonitorDataModel{
         }
 
         //-------------end of test code--------------------
+    }
+
+    public List<GraphDisplayItem> fetchGraphData(int graphType,List<String> descriptions){
+        switch (graphType){
+            case AppConst.GraphDataType.GRAPH_TYPE_DAM_SEEPAGE:{
+                return generateDamSeepageGraphData(descriptions);
+            }
+
+            case AppConst.GraphDataType.GRAPH_TYPE_WATER_DIVERSION:{
+                return generateWaterDiversionGraphData(descriptions);
+            }
+
+            default:
+            case AppConst.GraphDataType.GRAPH_TYPE_WATER_QUALITY:{
+                return generateWaterQualityGraphData(descriptions);
+            }
+        }
     }
 
     private List<UAVVideoItemEntity> generateTodayData(){
@@ -232,5 +254,116 @@ public class MonitorDataModel{
         entity.setAverageReservoirLevel(totalLevel / 6);
         entity.setDate(date);
         return entity;
+    }
+
+    private List<GraphDisplayItem> generateDamSeepageGraphData(List<String> descriptions){
+        List<GraphDisplayItem> data = new ArrayList<>();
+        List<String> subtitle1 = new ArrayList<>();
+        subtitle1.add("7天渗透压力变化(KPa)");
+        subtitle1.add("30天渗透压力变化(KPa)");
+        subtitle1.add("12个月渗透压力变化");
+
+        List<String> subtitle2 = new ArrayList<>();
+        subtitle2.add("7天渗流量变化(L/s)");
+        subtitle2.add("30天渗流量变化(L/s)");
+        subtitle2.add("12个月渗流量变化(L/s)");
+
+
+        GraphDisplayItem item1 = new GraphDisplayItem(descriptions.get(0),subtitle1,generateLineData(60,90, Color.parseColor("#AB313B")));
+        GraphDisplayItem item2 = new GraphDisplayItem(descriptions.get(1),subtitle2,generateLineData(2,4,Color.parseColor("#0A2B68")));
+
+        data.add(item1);
+        data.add(item2);
+        return data;
+    }
+
+    private List<GraphDisplayItem> generateWaterDiversionGraphData(List<String> descriptions){
+        List<GraphDisplayItem> data = new ArrayList<>();
+        List<String> subtitle = new ArrayList<>();
+        subtitle.add("7天压力计变化(MPa)");
+        subtitle.add("30天压力计变化(MPa)");
+        subtitle.add("12个月压力计变化(MPa)");
+
+        for (int i = 0;i < descriptions.size();i++){
+            GraphDisplayItem item = new GraphDisplayItem(descriptions.get(i),subtitle,generateLineData(0,4,Color.parseColor("#0A2B68")));
+            data.add(item);
+        }
+        return data;
+    }
+
+    private List<GraphDisplayItem> generateWaterQualityGraphData(List<String> descriptions){
+        List<GraphDisplayItem> data = new ArrayList<>();
+
+        List<String> subtitle1 = new ArrayList<>();
+        subtitle1.add("7天总氮变化(mg/L)");
+        subtitle1.add("30天总氮变化(mg/L)");
+        subtitle1.add("12个月总氮变化(mg/L)");
+        GraphDisplayItem item1 = new GraphDisplayItem(descriptions.get(0),subtitle1,generateLineData(0,2,Color.parseColor("#E4BD32")));
+        data.add(item1);
+
+        List<String> subtitle2 = Arrays.asList("7天总磷变化(mg/L)","30天总磷变化(mg/L)","12个月总磷变化(mg/L)");
+        GraphDisplayItem item2 = new GraphDisplayItem(descriptions.get(1),subtitle2,generateLineData(0,2,Color.parseColor("#C26526")));
+        data.add(item2);
+
+        List<String> subtitle3 = Arrays.asList("7天ph变化","30天ph变化","12个月ph变化");
+        GraphDisplayItem item3 = new GraphDisplayItem(descriptions.get(2),subtitle3,generateLineData(0,14,Color.parseColor("#598641")));
+        data.add(item3);
+
+        List<String> subtitle4 = Arrays.asList("7天电导率变化(us/cm)","30天电导率变化(us/cm)","12个月电导率变化(us/cm)");
+        GraphDisplayItem item4 = new GraphDisplayItem(descriptions.get(3),subtitle4,generateLineData(0,2400,Color.parseColor("#0D6BC1")));
+        data.add(item4);
+
+        List<String> subtitle5 = Arrays.asList("7天溶解氧变化(mg/L)","30天溶解氧变化(mg/L)","12个月溶解氧变化(mg/L)");
+        GraphDisplayItem item5 = new GraphDisplayItem(descriptions.get(4),subtitle5,generateLineData(0,6,Color.parseColor("#03B3F2")));
+        data.add(item5);
+
+        List<String> subtitle6 = Arrays.asList("7天浑浊度变化(NTU)","30天浑浊度变化(NTU)","12个月浑浊度变化(NTU)");
+        GraphDisplayItem item6 = new GraphDisplayItem(descriptions.get(5),subtitle6,generateLineData(0,2,Color.parseColor("#6D675E")));
+        data.add(item6);
+
+        List<String> subtitle7 = Arrays.asList("7天高锰酸盐指数变化(mg/L)","30天高锰酸盐指数变化(mg/L)","12个月高锰酸盐指数变化(mg/L)");
+        GraphDisplayItem item7 = new GraphDisplayItem(descriptions.get(6),subtitle7,generateLineData(0,6,Color.parseColor("#7445A9")));
+        data.add(item7);
+        return data;
+    }
+
+    private List<LineData> generateLineData(float min,float max,int color){
+        Random random = new Random();
+        List<Entry> weekEntries = new ArrayList<>();
+        for (int i = 0; i < 7;i++){
+            weekEntries.add(new Entry(i,random.nextInt((int) (max - min)) + random.nextFloat() + min));
+        }
+        LineDataSet weekLineDataSet = new LineDataSet(weekEntries,"week");
+        weekLineDataSet.setDrawCircles(false);
+        weekLineDataSet.setDrawValues(false);
+        weekLineDataSet.setColor(color);
+        LineData weekLineData = new LineData(weekLineDataSet);
+
+        List<Entry> monthEntries = new ArrayList<>(weekEntries);
+        for (int i = monthEntries.size();i < 30;i++){
+            monthEntries.add(new Entry(i,random.nextInt((int)(max - min)) + random.nextFloat() + min));
+        }
+        LineDataSet monthLineDataSet = new LineDataSet(monthEntries,"month");
+        monthLineDataSet.setDrawCircles(false);
+        monthLineDataSet.setDrawValues(false);
+        monthLineDataSet.setColor(color);
+        LineData monthLineData = new LineData(monthLineDataSet);
+
+        List<Entry> yearEntries = new ArrayList<>(monthEntries);
+        for (int i = yearEntries.size();i < 365;i++){
+            yearEntries.add(new Entry(i,random.nextInt((int)(max - min)) + random.nextFloat() + min));
+        }
+        LineDataSet yearLineDataSet = new LineDataSet(yearEntries,"year");
+        yearLineDataSet.setDrawCircles(false);
+        yearLineDataSet.setDrawValues(false);
+        yearLineDataSet.setColor(color);
+        LineData yearLineData = new LineData(yearLineDataSet);
+
+        List<LineData> list = new ArrayList<>();
+        list.add(weekLineData);
+        list.add(monthLineData);
+        list.add(yearLineData);
+
+        return list;
     }
 }

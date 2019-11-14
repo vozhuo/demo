@@ -13,23 +13,27 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.myapplication.R;
+import com.example.myapplication.app.AppConst;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class DamSeepageActivity extends AppCompatActivity {
-    private static final String TAG = "DamSeepageActivity";
+public class DamSeepageActivity extends BaseActivity {
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dam_seepage);
-        Toolbar mToolbar = findViewById(R.id.common_toolbar);
-        mToolbar.setTitle(R.string.activity_dam_seepage_title);
-        mToolbar.setNavigationIcon(R.mipmap.ic_arrow_back_white);
-        mToolbar.setNavigationOnClickListener(v -> finish());
+    protected int getContentViewId() {
+        return R.layout.activity_dam_seepage;
+    }
 
+    @Override
+    protected boolean useSupportedToolbar() {
+        return true;
+    }
+
+    @Override
+    protected void initView(@Nullable Bundle savedInstanceState) {
+        getToolbar().setTitle(R.string.activity_dam_seepage_title);
         TextView tv_sub_header_center = findViewById(R.id.tv_sub_header_center);
         tv_sub_header_center.setText("坝体渗流监测布置图");
 
@@ -61,7 +65,7 @@ public class DamSeepageActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position != plants.size() - 1) {
-                    Intent intent = new Intent(DamSeepageActivity.this, WaterDiversionGraphActivity.class);
+                    Intent intent = new Intent(DamSeepageActivity.this, CommonGraphActivity.class);
 
                     Bundle bundle = new Bundle();
                     bundle.putString("activity_title", getString(R.string.activity_dam_seepage_title));
@@ -69,6 +73,7 @@ public class DamSeepageActivity extends AppCompatActivity {
                             parent.getSelectedItem().toString() + "渗压计",
                             parent.getSelectedItem().toString() + "渗流量"));
                     bundle.putStringArrayList("list", list);
+                    intent.putExtra("GraphType", AppConst.GraphDataType.GRAPH_TYPE_DAM_SEEPAGE);
                     intent.putExtras(bundle);
                     startActivity(intent);
                 }
@@ -79,5 +84,10 @@ public class DamSeepageActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    protected void initData() {
+
     }
 }

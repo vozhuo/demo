@@ -6,8 +6,6 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF">
 
-    <include layout="@layout/common_toolbar"/>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/activity_video_surveillance_recyclerview"
         android:layout_width="match_parent"

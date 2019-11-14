@@ -48,6 +48,12 @@
     <color name="activity_dam_monitor_graph_surface_line_color">#EFBE21</color>
     <color name="activity_dam_monitor_graph_internel_line_color">#EB8036</color>
 
+    <!-- 监测-大坝渗流 -->
+    <color name="activity_dam_seepage_graph_line_color1">#AB313B</color>
+    <color name="activity_dam_seepage_graph_line_color2">#0A2B68</color>
 
     <color name="common_sub_header_light_blue">#4D2196F3</color>
+
+    <color name="common_item_graph_main_background">#C9DAEE</color>
+    <color name="common_item_graph_item_background">#9DBFDD</color>
 </resources>

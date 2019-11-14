@@ -22,18 +22,21 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class DamStressActivity extends AppCompatActivity {
-
-    private Toolbar mToolbar;
+public class DamStressActivity extends BaseActivity {
+    
+    @Override
+    protected int getContentViewId() {
+        return R.layout.activity_dam_stress;
+    }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dam_stress);
-        mToolbar = findViewById(R.id.common_toolbar);
-        mToolbar.setTitle(R.string.activity_dam_stress_title);
-        mToolbar.setNavigationIcon(R.mipmap.ic_arrow_back_white);
-        mToolbar.setNavigationOnClickListener(v -> finish());
+    protected boolean useSupportedToolbar() {
+        return true;
+    }
+
+    @Override
+    protected void initView(@Nullable Bundle savedInstanceState) {
+        getToolbar().setTitle(R.string.activity_dam_stress_title);
 
         DamStressAdapter mAdapter = new DamStressAdapter(dataList());
 
@@ -42,6 +45,11 @@ public class DamStressActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
 
         set_date_picker();
+    }
+
+    @Override
+    protected void initData() {
+
     }
 
     private void set_date_picker() {

@@ -1,7 +1,10 @@
 package com.example.myapplication.ui.activity;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,25 +14,55 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.adapter.WaterDiversionAdapter;
+import com.example.myapplication.app.AppConst;
 import com.example.myapplication.entity.BasicEntity;
 import com.example.myapplication.entity.WaterDiversionEntity;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
-public class WaterDiversionActivity extends AppCompatActivity {
+public class WaterDiversionActivity extends BaseActivity {
+    private ImageView mCalendarBtn;
+    private TextView mCalendarTv;
+
+    private Calendar mCalendar;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_water_diversion);
-        Toolbar mToolbar = findViewById(R.id.common_toolbar);
-        mToolbar.setTitle(R.string.activity_water_diversion_title);
-        mToolbar.setNavigationIcon(R.mipmap.ic_arrow_back_white);
-        mToolbar.setNavigationOnClickListener(v -> finish());
+    protected int getContentViewId() {
+        return R.layout.activity_water_diversion;
+    }
+
+    @Override
+    protected boolean useSupportedToolbar() {
+        return true;
+    }
+
+    @Override
+    protected void initView(@Nullable Bundle savedInstanceState) {
+        getToolbar().setTitle(R.string.activity_water_diversion_title);
+        mCalendarBtn = findViewById(R.id.iv_date_picker);
+        mCalendarTv = findViewById(R.id.tv_date);
+        mCalendarTv.setText(SimpleDateFormat.getDateInstance().format(new Date()));
+        mCalendar = Calendar.getInstance();
+        mCalendarBtn.setOnClickListener(v -> {
+            DatePickerDialog datePickerDialog = new DatePickerDialog(WaterDiversionActivity.this,
+                    (view, year, month, dayOfMonth) -> {
+                        mCalendar.set(Calendar.YEAR, year);
+                        mCalendar.set(Calendar.MONTH, month);
+                        mCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                        mCalendarTv.setText(SimpleDateFormat.getDateInstance().format(mCalendar.getTime()));
+
+                    }, mCalendar.get(Calendar.YEAR),
+                    mCalendar.get(Calendar.MONTH),
+                    mCalendar.get(Calendar.DAY_OF_MONTH));
+            datePickerDialog.show();
+        });
+
 
         WaterDiversionAdapter mAdapter = new WaterDiversionAdapter(dataList());
-
         RecyclerView mRecyclerView = findViewById(R.id.rv_water_diversion);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mAdapter);
@@ -41,14 +74,20 @@ public class WaterDiversionActivity extends AppCompatActivity {
                 for (BasicEntity d : item.getWaterlist()) {
                     list.add(d.getNumber() + "压力计");
                 }
-                Intent intent = new Intent(this, WaterDiversionGraphActivity.class);
+                Intent intent = new Intent(this, CommonGraphActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("activity_title", getString(R.string.activity_water_diversion_title));
                 bundle.putStringArrayList("list", list);
+                intent.putExtra("GraphType", AppConst.GraphDataType.GRAPH_TYPE_WATER_DIVERSION);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
+
+    }
+
+    @Override
+    protected void initData() {
 
     }
 

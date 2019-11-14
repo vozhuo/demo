@@ -5,8 +5,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/common_toolbar" />
-
     <include layout="@layout/common_sub_header_center" />
 
     <Spinner
