@@ -88,7 +88,7 @@
         android:id="@+id/fragment_data_hydro_meteorology_cardview"
         android:layout_width="370dp"
         android:layout_height="100dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/drawable_card_white_selector"
         app:cardCornerRadius="6dp"
         app:cardElevation="0dp"
@@ -122,7 +122,7 @@
         android:layout_width="370dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="10dp">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/fragment_data_dam_stress_cardview"
@@ -213,7 +213,7 @@
         android:layout_width="370dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="10dp">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/fragment_data_video_surveillance_cardview"

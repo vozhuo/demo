@@ -23,7 +23,7 @@ import java.util.Date;
 import java.util.List;
 
 public class DamStressActivity extends BaseActivity {
-    
+
     @Override
     protected int getContentViewId() {
         return R.layout.activity_dam_stress;
