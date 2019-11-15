@@ -105,11 +105,11 @@ public class MonitorDataModel{
 
         //an hour ago
         calendar.add(Calendar.HOUR,-1);
-        UAVVideoItemEntity entity1 = new UAVVideoItemEntity(calendar.getTime(),"K12", R.mipmap.ic_uav_patrol1,-1);
+        UAVVideoItemEntity entity1 = new UAVVideoItemEntity(calendar.getTime(),"K12", R.mipmap.ic_uav_patrol1,R.raw.video_uav_1);
 
         //two hour ago
         calendar.add(Calendar.HOUR,-1);
-        UAVVideoItemEntity entity2 = new UAVVideoItemEntity(calendar.getTime(),"PB32",R.mipmap.ic_uav_patrol2,-1);
+        UAVVideoItemEntity entity2 = new UAVVideoItemEntity(calendar.getTime(),"PB32",R.mipmap.ic_uav_patrol2,R.raw.video_uav_2);
 
         List<UAVVideoItemEntity> list = new ArrayList<>();
         list.add(entity1);

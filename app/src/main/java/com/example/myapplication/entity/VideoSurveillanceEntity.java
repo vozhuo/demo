@@ -5,9 +5,9 @@ public class VideoSurveillanceEntity {
     private String mSerialNumber;
     private String mLocation;
     private int mVideoShortcut;
-    private String mVideoFilePath;
+    private int mVideoFilePath;
 
-    public VideoSurveillanceEntity(String serialNumber, String location, int videoShortcut, String videoFilePath) {
+    public VideoSurveillanceEntity(String serialNumber, String location, int videoShortcut, int videoFilePath) {
         this.mSerialNumber = serialNumber;
         this.mLocation = location;
         this.mVideoShortcut = videoShortcut;
@@ -38,11 +38,11 @@ public class VideoSurveillanceEntity {
         this.mVideoShortcut = videoShortcut;
     }
 
-    public String getVideoFilePath() {
+    public int getVideoFilePath() {
         return mVideoFilePath;
     }
 
-    public void setVideoFilePath(String videoFilePath) {
+    public void setVideoFilePath(int videoFilePath) {
         this.mVideoFilePath = videoFilePath;
     }
 }

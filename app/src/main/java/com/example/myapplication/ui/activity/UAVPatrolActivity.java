@@ -82,7 +82,7 @@ public class UAVPatrolActivity extends BaseActivity {
                 String uri = "android.resource://" + getPackageName() + "/" + entity.getVideoUrl();
                 String title = mFormatter.format(entity.getUploadDate()) + "    " + entity.getLocation();
 
-                intent.putExtra("VideoUri",testUri);
+                intent.putExtra("VideoUri",uri);
                 intent.putExtra("VideoTitle",title);
                 startActivity(intent);
             }
